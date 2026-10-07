@@ -5,30 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Westport Middle School Quick Recall Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 60 60%27%3E%3Cpath d=%27M6 6h48v26c0 14-11 22-24 24C17 54 6 46 6 32z%27 fill=%27%230B2A5B%27/%3E%3Ctext x=%2730%27 y=%2741%27 text-anchor=%27middle%27 font-family=%27Arial Black,Arial%27 font-weight=%27900%27 font-size=%2730%27 fill=%27white%27%3EW%3C/text%3E%3C/svg%3E">
 <style>
   :root {
-    --paper: #F1E8D6;
-    --paper-dark: #E7D9B8;
-    --ink: #23303A;
-    --ink-soft: #4B5A63;
-    --teal: #2F6B63;
-    --teal-dark: #1F4A45;
-    --brass: #B8863B;
-    --brass-light: #D9AE63;
-    --rust: #A6483A;
-    --line: #C9B98F;
-    --card-shadow: 0 3px 0 rgba(35,48,58,0.08), 0 8px 20px rgba(35,48,58,0.10);
+    /* Westport Middle School — Warhawks blue & white */
+    --bg: #F2F6FC;
+    --surface: #FFFFFF;
+    --surface-alt: #E8EFFA;
+    --ink: #0F2347;
+    --ink-soft: #4A5B78;
+    --navy: #0B2A5B;
+    --blue: #1D4ED8;
+    --sky: #3B82F6;
+    --sky-light: #BFD4F7;
+    --red: #C0392B;
+    --line: #C9D6EA;
+    --card-shadow: 0 3px 0 rgba(11,42,91,0.08), 0 8px 20px rgba(11,42,91,0.12);
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    background:
-      repeating-linear-gradient(0deg, rgba(35,48,58,0.02) 0px, rgba(35,48,58,0.02) 1px, transparent 1px, transparent 34px),
-      repeating-linear-gradient(90deg, rgba(35,48,58,0.02) 0px, rgba(35,48,58,0.02) 1px, transparent 1px, transparent 34px),
-      var(--paper);
+    background: var(--bg);
     color: var(--ink);
     font-family: 'Inter', -apple-system, sans-serif;
     min-height: 100vh;
@@ -41,10 +41,11 @@
   }
 
   h1, h2, h3 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-weight: 800;
     margin: 0;
     color: var(--ink);
+    letter-spacing: -0.01em;
   }
 
   /* ---------- Header ---------- */
@@ -52,13 +53,26 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    padding-bottom: 18px;
-    border-bottom: 2px solid var(--line);
+    padding: 18px 20px;
     margin-bottom: 22px;
+    background: linear-gradient(135deg, var(--navy) 0%, #123A7A 100%);
+    color: #fff;
+    border-radius: 14px;
+    border-bottom: 4px solid var(--sky);
+    box-shadow: var(--card-shadow);
   }
-  .masthead svg { flex-shrink: 0; }
-  .masthead h1 { font-size: 26px; line-height: 1.15; }
-  .masthead p { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-soft); }
+  .masthead .mark {
+    flex-shrink: 0;
+    width: 64px; height: 64px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .masthead .mark img, .masthead .mark svg { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .masthead h1 { font-size: 24px; line-height: 1.15; color: #fff; }
+  .masthead p { margin: 5px 0 0; font-size: 13px; color: var(--sky-light); font-weight: 500; }
+  .masthead p b { color: #fff; font-weight: 700; }
 
   .back-row {
     display: flex;
@@ -72,7 +86,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    color: var(--teal-dark);
+    color: var(--navy);
     cursor: pointer;
     padding: 6px 0;
     display: flex;
@@ -92,18 +106,18 @@
     padding: 8px 14px;
     border-radius: 20px;
     border: 1px solid var(--line);
-    background: var(--paper);
+    background: var(--surface);
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 13px;
     color: var(--ink-soft);
     cursor: pointer;
   }
-  .subject-tab:hover { border-color: var(--brass); }
+  .subject-tab:hover { border-color: var(--sky); }
   .subject-tab.active {
-    background: var(--teal-dark);
-    border-color: var(--teal-dark);
-    color: var(--paper);
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--surface);
   }
 
   .stats-strip {
@@ -113,13 +127,13 @@
   }
   .stat-box {
     flex: 1;
-    background: var(--paper-dark);
+    background: var(--surface-alt);
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 10px 12px;
     text-align: center;
   }
-  .stat-box .num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: var(--teal-dark); }
+  .stat-box .num { font-family: 'Montserrat', 'Inter', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); }
   .stat-box .lbl { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
 
   /* ---------- Category list ---------- */
@@ -127,9 +141,9 @@
     display: block;
     width: 100%;
     text-align: left;
-    background: var(--paper);
+    background: var(--surface);
     border: 1px solid var(--line);
-    border-left: 5px solid var(--brass);
+    border-left: 5px solid var(--blue);
     border-radius: 3px;
     padding: 14px 16px;
     margin-bottom: 10px;
@@ -139,17 +153,17 @@
   }
   .sheet:hover { box-shadow: var(--card-shadow); transform: translateY(-1px); }
   .sheet .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-  .sheet .cat-name { font-family: 'Fraunces', serif; font-size: 16.5px; font-weight: 600; }
+  .sheet .cat-name { font-family: 'Montserrat', 'Inter', sans-serif; font-size: 16.5px; font-weight: 600; }
   .sheet .cat-num { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.02em; }
   .sheet .cat-desc { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
   .progress-track {
     height: 6px;
-    background: var(--paper-dark);
+    background: var(--surface-alt);
     border-radius: 3px;
     margin-top: 10px;
     overflow: hidden;
   }
-  .progress-fill { height: 100%; background: var(--brass); border-radius: 3px; }
+  .progress-fill { height: 100%; background: var(--blue); border-radius: 3px; }
   .pct-label { font-size: 11px; color: var(--ink-soft); margin-top: 4px; text-align: right; }
 
   .subject-note {
@@ -166,8 +180,8 @@
   .cat-header p { color: var(--ink-soft); font-size: 14px; margin-top: 6px; line-height: 1.5; }
   .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
   .mode-card {
-    background: var(--teal);
-    color: var(--paper);
+    background: var(--blue);
+    color: var(--surface);
     border: none;
     border-radius: 5px;
     padding: 20px 14px;
@@ -175,14 +189,14 @@
     text-align: left;
     font-family: inherit;
   }
-  .mode-card:nth-child(2) { background: var(--brass); color: var(--ink); }
+  .mode-card:nth-child(2) { background: var(--surface); color: var(--navy); border: 2px solid var(--navy); }
   .mode-card h3 { color: inherit; font-size: 17px; margin-bottom: 4px; }
   .mode-card p { margin: 0; font-size: 12px; opacity: 0.9; }
   .mode-card:hover { filter: brightness(1.05); }
 
   .mini-stats { display: flex; gap: 20px; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
   .mini-stat { font-size: 13px; color: var(--ink-soft); }
-  .mini-stat b { color: var(--ink); font-family: 'Fraunces', serif; }
+  .mini-stat b { color: var(--ink); font-family: 'Montserrat', 'Inter', sans-serif; }
 
   /* ---------- Session (shared) ---------- */
   .session-progress { font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; display: flex; justify-content: space-between; }
@@ -203,7 +217,7 @@
     backface-visibility: hidden;
     border-radius: 6px;
     border: 1px solid var(--line);
-    background: #FAF4E6;
+    background: #FFFFFF;
     box-shadow: var(--card-shadow);
     display: flex;
     flex-direction: column;
@@ -217,9 +231,9 @@
     border-bottom: 2px solid var(--line);
     border-radius: 0 0 6px 6px;
   }
-  .face .eyebrow { font-size: 11px; color: var(--brass); font-weight: 600; margin-bottom: 10px; }
-  .face .term { font-family: 'Fraunces', serif; font-size: 24px; line-height: 1.25; }
-  .face.back { transform: rotateY(180deg); background: #EFE6D2; }
+  .face .eyebrow { font-size: 11px; color: var(--blue); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+  .face .term { font-family: 'Montserrat', 'Inter', sans-serif; font-size: 24px; line-height: 1.25; }
+  .face.back { transform: rotateY(180deg); background: #EAF1FB; }
   .face .def { font-size: 15px; line-height: 1.55; color: var(--ink); }
   .tap-hint { text-align: center; font-size: 11.5px; color: var(--ink-soft); margin-top: -6px; margin-bottom: 16px; }
 
@@ -233,40 +247,40 @@
     font-size: 14px;
     cursor: pointer;
   }
-  .fc-btn.learning { background: var(--paper-dark); border: 1px solid var(--line); color: var(--ink); }
-  .fc-btn.known { background: var(--teal); color: var(--paper); }
+  .fc-btn.learning { background: var(--surface-alt); border: 1px solid var(--line); color: var(--ink); }
+  .fc-btn.known { background: var(--blue); color: var(--surface); }
   .fc-btn:disabled { opacity: 0.5; cursor: default; }
 
   /* ---------- Quiz ---------- */
   .quiz-q {
-    background: #FAF4E6;
+    background: #FFFFFF;
     border: 1px solid var(--line);
     border-radius: 6px;
     padding: 22px 20px;
     margin-bottom: 16px;
   }
-  .quiz-q .term { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.4; }
+  .quiz-q .term { font-family: 'Montserrat', 'Inter', sans-serif; font-size: 18px; line-height: 1.4; }
   .options { display: flex; flex-direction: column; gap: 9px; }
   .opt-btn {
     text-align: left;
     padding: 13px 14px;
     border-radius: 5px;
     border: 1px solid var(--line);
-    background: var(--paper);
+    background: var(--surface);
     font-family: 'Inter', sans-serif;
     font-size: 14.5px;
     cursor: pointer;
     color: var(--ink);
   }
-  .opt-btn:hover:not(:disabled) { border-color: var(--brass); }
-  .opt-btn.correct { background: var(--teal); border-color: var(--teal); color: var(--paper); font-weight: 600; }
-  .opt-btn.incorrect { background: var(--rust); border-color: var(--rust); color: var(--paper); font-weight: 600; }
+  .opt-btn:hover:not(:disabled) { border-color: var(--sky); }
+  .opt-btn.correct { background: var(--blue); border-color: var(--blue); color: var(--surface); font-weight: 600; }
+  .opt-btn.incorrect { background: var(--red); border-color: var(--red); color: var(--surface); font-weight: 600; }
   .opt-btn:disabled { cursor: default; }
 
   .next-row { margin-top: 16px; display: flex; justify-content: flex-end; }
   .primary-btn {
-    background: var(--teal-dark);
-    color: var(--paper);
+    background: var(--navy);
+    color: var(--surface);
     border: none;
     border-radius: 5px;
     padding: 12px 22px;
@@ -291,11 +305,11 @@
   .score-banner {
     text-align: center;
     padding: 30px 20px;
-    background: var(--paper-dark);
+    background: var(--surface-alt);
     border-radius: 6px;
     border: 1px solid var(--line);
   }
-  .score-banner .big { font-family: 'Fraunces', serif; font-size: 40px; font-weight: 700; color: var(--teal-dark); }
+  .score-banner .big { font-family: 'Montserrat', 'Inter', sans-serif; font-size: 40px; font-weight: 700; color: var(--navy); }
   .score-banner p { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
   .score-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: center; flex-wrap: wrap; }
 
@@ -1625,13 +1639,17 @@ function overallStats(subject) {
 /* ============================= RENDER ============================= */
 const app = document.getElementById("app");
 
-function compassSVG(size) {
-  return `<svg width="${size}" height="${size}" viewBox="0 0 60 60" fill="none">
-    <circle cx="30" cy="30" r="27" stroke="var(--brass)" stroke-width="2"/>
-    <path d="M30 6 L34 30 L30 54 L26 30 Z" fill="var(--teal)"/>
-    <path d="M6 30 L30 26 L54 30 L30 34 Z" fill="var(--brass)"/>
-    <circle cx="30" cy="30" r="3.5" fill="var(--ink)"/>
-  </svg>`;
+const SCHOOL_LOGO = "https://cmsv2-assets.apptegy.net/uploads/21451/logo/24265/Westport_Middle.png";
+function logoMark() {
+  // Official Westport Middle logo; if it ever fails to load, fall back to a W shield.
+  return `
+  <div class="mark" aria-hidden="true">
+    <img src="${SCHOOL_LOGO}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <path d="M6 6h48v26c0 14-11 22-24 24C17 54 6 46 6 32z" fill="var(--navy)"/>
+      <text x="30" y="41" text-anchor="middle" font-family="Montserrat, Arial Black, Arial" font-weight="800" font-size="30" fill="#fff">W</text>
+    </svg>
+  </div>`;
 }
 
 function render() {
@@ -1647,10 +1665,10 @@ function renderHome() {
   const stats = overallStats(subject);
   app.innerHTML = `
     <div class="masthead">
-      ${compassSVG(46)}
+      ${logoMark()}
       <div>
         <h1>Westport Middle School Quick Recall Guide</h1>
-        <p>KAAC Governors Cup study companion</p>
+        <p><b>Westport Warhawks</b> &middot; KAAC Governors Cup study companion</p>
       </div>
     </div>
 
@@ -1710,7 +1728,7 @@ function renderCategory() {
       <button class="back-btn" id="back-home">&larr; All categories</button>
     </div>
     <div class="cat-header">
-      <div class="cat-num" style="font-size:11px; color:var(--brass); font-weight:600; margin-bottom:4px;">${cat.num}</div>
+      <div class="cat-num" style="font-size:11px; color:var(--blue); font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;">${cat.num}</div>
       <h1 style="font-size:22px;">${cat.name}</h1>
       <p>${cat.desc}</p>
     </div>
