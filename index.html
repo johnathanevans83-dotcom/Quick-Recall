@@ -166,6 +166,58 @@
   .progress-fill { height: 100%; background: var(--blue); border-radius: 3px; }
   .pct-label { font-size: 11px; color: var(--ink-soft); margin-top: 4px; text-align: right; }
 
+
+  /* ---------- Main nav (Study / Schedule) ---------- */
+  .nav-row { display: flex; gap: 6px; background: var(--surface-alt); border: 1px solid var(--line);
+             border-radius: 10px; padding: 4px; margin-bottom: 18px; }
+  .nav-tab { flex: 1; padding: 9px 12px; border: none; border-radius: 7px; background: none;
+             font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13.5px;
+             color: var(--ink-soft); cursor: pointer; }
+  .nav-tab.active { background: var(--surface); color: var(--navy); box-shadow: 0 1px 3px rgba(11,42,91,0.15); }
+
+  /* ---------- Schedule ---------- */
+  .next-up { background: linear-gradient(135deg, var(--navy) 0%, #123A7A 100%); color: #fff;
+             border-radius: 12px; padding: 18px 20px; margin-bottom: 20px; box-shadow: var(--card-shadow); }
+  .next-up .kicker { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+                     color: var(--sky-light); font-weight: 700; }
+  .next-up .count { font-family: 'Montserrat','Inter',sans-serif; font-weight: 800; font-size: 34px;
+                    line-height: 1.1; margin: 6px 0 2px; }
+  .next-up .ev { font-size: 15px; font-weight: 600; }
+  .next-up .meta { font-size: 12.5px; color: var(--sky-light); margin-top: 4px; }
+
+  .sched-group { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+                 color: var(--ink-soft); margin: 22px 0 8px; }
+  .event {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--line);
+    border-radius: 6px; padding: 12px 14px; margin-bottom: 9px;
+  }
+  .event.key { border-left-color: var(--blue); }
+  .event.done { opacity: 0.55; }
+  .event .date { flex-shrink: 0; width: 46px; text-align: center; }
+  .event .date .m { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em;
+                    text-transform: uppercase; color: var(--blue); }
+  .event .date .d { font-family: 'Montserrat','Inter',sans-serif; font-weight: 800;
+                    font-size: 20px; line-height: 1.1; color: var(--ink); }
+  .event .body { flex: 1; min-width: 0; }
+  .event .title { font-weight: 600; font-size: 14.5px; line-height: 1.3; }
+  .event .detail { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+           text-transform: uppercase; padding: 3px 7px; border-radius: 4px; margin-top: 6px; }
+  .badge.qr { background: var(--blue); color: #fff; }
+  .badge.other { background: var(--surface-alt); color: var(--ink-soft); }
+  .badge.deadline { background: #FBE9E7; color: var(--red); }
+  .badge.ca { background: var(--navy); color: #fff; }
+  .badge.sps, .badge.comp { background: var(--sky-light); color: var(--navy); }
+  .badge.bye { background: var(--surface-alt); color: var(--ink-soft); }
+  .event .teams { font-size: 12px; color: var(--navy); font-weight: 600; margin-top: 3px; }
+  .practice { display: flex; gap: 12px; align-items: center; background: var(--surface-alt);
+              border: 1px solid var(--sky-light); border-radius: 10px; padding: 12px 14px; margin-bottom: 18px; }
+  .practice .ico { width: 36px; height: 36px; border-radius: 8px; background: var(--navy); color: #fff;
+                   display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
+  .practice .t { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .practice .s { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+
   .subject-note {
     font-size: 12.5px;
     color: var(--ink-soft);
@@ -194,7 +246,7 @@
   .mode-card p { margin: 0; font-size: 12px; opacity: 0.9; }
   .mode-card:hover { filter: brightness(1.05); }
 
-  .mini-stats { display: flex; gap: 20px; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .mini-stats { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
   .mini-stat { font-size: 13px; color: var(--ink-soft); }
   .mini-stat b { color: var(--ink); font-family: 'Montserrat', 'Inter', sans-serif; }
 
@@ -342,210 +394,513 @@ const SUBJECTS = [
     categories: [
       {
         id: "cur", name: "Current History", num: "Category 1",
-        desc: "People and events from the most recent five years.",
+        desc: "People and events from the most recent five years, as covered in the KAAC guide: world and U.S. leaders, conflicts, elections, and major news.",
         flashcards: [
-          { id:"cur-f1", term:"Rishi Sunak", def:"Became UK Prime Minister in October 2022, replacing Liz Truss; Conservative Party; first PM to serve under King Charles III." },
-          { id:"cur-f2", term:"King Charles III", def:"Became King of England after Queen Elizabeth II's death in September 2022." },
-          { id:"cur-f3", term:"Volodymyr Zelenskyy", def:"President of Ukraine since 2019; former comedian and actor; named Time Person of the Year in 2022 for wartime leadership." },
-          { id:"cur-f4", term:"Vladimir Putin", def:"President of Russia (2012-present, also 2000-2008); served as Prime Minister 2008-2012; former KGB officer." },
-          { id:"cur-f5", term:"Xi Jinping", def:"President of China since 2013; launched the global infrastructure program known as the Belt and Road Initiative." },
-          { id:"cur-f6", term:"Olaf Scholz", def:"Chancellor of Germany, taking over after Angela Merkel's retirement; member of the Social Democratic Party." },
-          { id:"cur-f7", term:"Benjamin Netanyahu", def:"Prime Minister of Israel; indicted on corruption charges in 2019; lost the premiership in 2021 before returning after 2022 elections." },
-          { id:"cur-f8", term:"Joe Biden", def:"U.S. President; former Vice President and longtime Senator from Delaware; defeated Donald Trump in the 2020 election." },
-          { id:"cur-f9", term:"Kamala Harris", def:"Vice President; first woman, first Asian American, and first African American to hold the office; former Senator from California." },
-          { id:"cur-f10", term:"Nancy Pelosi", def:"Speaker of the House (2007-2011 and 2019-2023); first woman to hold the position." },
-          { id:"cur-f11", term:"Mitch McConnell", def:"Longtime Senator from Kentucky; served as Senate Majority Leader (2015-2019); blocked Merrick Garland's Supreme Court nomination." },
-          { id:"cur-f12", term:"Tim Walz", def:"Governor of Minnesota and former teacher and football coach; 2024 Democratic Vice Presidential nominee." }
+          { id:"cur-f1", term:"Rishi Sunak", def:"Became U.K. Prime Minister in October 2022, replacing Liz Truss; a Conservative and former Chancellor of the Exchequer, and the first new PM under King Charles III." },
+          { id:"cur-f2", term:"King Charles III", def:"Became King of the United Kingdom upon the death of his mother, Queen Elizabeth II, in September 2022." },
+          { id:"cur-f3", term:"Volodymyr Zelenskyy", def:"President of Ukraine since 2019 and a former comedian and TV actor; Time's 2022 Person of the Year; told the West early in the war, \"I need ammo, not a ride.\"" },
+          { id:"cur-f4", term:"Zelenskyy addresses Congress", def:"In December 2022 he spoke to a joint session of the U.S. Congress and presented a Ukrainian flag to Speaker Nancy Pelosi and Vice President Kamala Harris." },
+          { id:"cur-f5", term:"Jair Bolsonaro", def:"President of Brazil from January 2019 to January 2023; defeated by Luiz In\u00e1cio Lula da Silva in the 2022 election after criticism over corruption and his handling of COVID-19." },
+          { id:"cur-f6", term:"Vladimir Putin", def:"President of Russia (2000-2008 and 2012-present) and Prime Minister in between (2008-2012); a former KGB officer known for strongman imagery." },
+          { id:"cur-f7", term:"Putin's key actions", def:"Annexed Crimea in 2014, intervened militarily in Syria, interfered in foreign elections, and ordered the 2022 full-scale invasion of Ukraine." },
+          { id:"cur-f8", term:"Xi Jinping", def:"President of China since 2013; had term limits removed in 2018 and won a third term as Communist Party General Secretary, the first since Mao Zedong." },
+          { id:"cur-f9", term:"Belt and Road Initiative", def:"Xi Jinping's international policy of building infrastructure in other nations; Xi is also known for the zero-COVID lockdowns that lasted until December 2022." },
+          { id:"cur-f10", term:"Olaf Scholz", def:"Chancellor of Germany after the 2021 elections and Angela Merkel's retirement; a Social Democrat and former Mayor of Hamburg (2011-2018)." },
+          { id:"cur-f11", term:"Benjamin Netanyahu", def:"Prime Minister of Israel; indicted on corruption charges in 2019, briefly lost the premiership in 2021, and returned after the 2022 elections." },
+          { id:"cur-f12", term:"Recep Tayyip Erdo\u011fan", def:"President of Turkey since 2014 and former Mayor of Istanbul (1994-1998); survived a 2016 coup attempt." },
+          { id:"cur-f13", term:"Kim Jong-un", def:"Supreme Leader of North Korea; pursued aggressive nuclear weapons development while holding high-profile summits with U.S. and South Korean leaders." },
+          { id:"cur-f14", term:"Moon Jae-in", def:"President of South Korea who advocated engagement with the North and achieved a historic summit with Kim Jong-un." },
+          { id:"cur-f15", term:"Joe Biden", def:"46th U.S. President; Vice President 2009-2017 and U.S. Senator from Delaware 1973-2009; defeated Donald Trump in 2020." },
+          { id:"cur-f16", term:"Biden's major laws", def:"Signed the American Rescue Plan Act, the Infrastructure Investment and Jobs Act, and the Inflation Reduction Act; appointed Ketanji Brown Jackson, the first Black woman on the Supreme Court." },
+          { id:"cur-f17", term:"Donald Trump", def:"45th U.S. President (2017-2021); appointed Justices Neil Gorsuch, Brett Kavanaugh, and Amy Coney Barrett; signed the Tax Cuts and Jobs Act of 2017." },
+          { id:"cur-f18", term:"Trump's impeachments", def:"Impeached twice by the U.S. House but not removed from office either time; the January 6th Committee recommended him for criminal prosecution." },
+          { id:"cur-f19", term:"Kamala Harris", def:"First woman, first Asian American, and first African American Vice President; former U.S. Senator (2017-2021) and Attorney General (2011-2017) for California; 2024 Democratic nominee for President." },
+          { id:"cur-f20", term:"Harris as acting president", def:"Became the first woman to exercise presidential power when she served as acting president while President Biden was under general anesthesia." },
+          { id:"cur-f21", term:"Nancy Pelosi", def:"First woman Speaker of the House (2007-2011 and 2019-2023), representing San Francisco; the highest-ranking U.S. official to visit Taiwan, in August 2022." },
+          { id:"cur-f22", term:"Attack on Paul Pelosi", def:"In 2022, Speaker Pelosi's husband Paul was attacked in their home with a hammer by a domestic terrorist." },
+          { id:"cur-f23", term:"Mitch McConnell", def:"Kentucky's senior U.S. Senator; Senate Majority Leader 2015-2019 and Minority Leader afterward; blocked consideration of Merrick Garland for the Supreme Court." },
+          { id:"cur-f24", term:"McConnell's first campaign", def:"Won his Senate seat in 1984 with Roger Ailes as campaign manager, using ads of bloodhounds searching for his opponent's missed Senate votes." },
+          { id:"cur-f25", term:"Gretchen Whitmer", def:"Governor of Michigan." },
+          { id:"cur-f26", term:"Karen Bass", def:"First female mayor of Los Angeles, elected in 2022; previously a U.S. Representative from 2011 to 2022." },
+          { id:"cur-f27", term:"Tim Walz", def:"Governor of Minnesota and former U.S. Representative; a former social studies teacher and football coach who won a state title in 1999; 2024 Democratic nominee for Vice President." },
+          { id:"cur-f28", term:"J.D. Vance", def:"U.S. Senator from Ohio, former venture capitalist, and author of Hillbilly Elegy; 2024 Republican nominee for Vice President." },
+          { id:"cur-f29", term:"January 6, 2021 insurrection", def:"A mob of Trump supporters stormed the U.S. Capitol during the certification of Electoral College votes confirming Biden's win; five people died and it led to Trump's second impeachment." },
+          { id:"cur-f30", term:"Russian invasion of Ukraine", def:"Began February 24, 2022, escalating a conflict that started with Russia's 2014 annexation of Crimea; Putin falsely claimed he needed to \"demilitarize and denazify\" Ukraine." },
+          { id:"cur-f31", term:"Assassination of Shinzo Abe", def:"Japan's longest-serving prime minister was shot with a homemade firearm on July 8, 2022, during a campaign speech in Nara by Tetsuya Yamagami, who blamed the Unification Church for his family's ruin." },
+          { id:"cur-f32", term:"Hong Kong protests (2019)", def:"Mass demonstrations triggered by a proposed extradition bill to mainland China; grew into a pro-democracy movement defending \"one country, two systems\" and ended with a national security law crackdown." },
+          { id:"cur-f33", term:"Brexit", def:"The U.K.'s exit from the European Union after a 2016 referendum in which 52% voted to leave; the U.K. formally left on January 31, 2020, with a transition period ending December 31, 2020." },
+          { id:"cur-f34", term:"2020 in the United States", def:"The COVID-19 pandemic brought lockdowns and vaccine rollouts, and Black Lives Matter protests erupted after the deaths of Breonna Taylor, George Floyd, and others." },
+          { id:"cur-f35", term:"Galwan Valley clash (2020)", def:"A June 2020 fight between Indian and Chinese troops in the disputed Ladakh region along the Line of Actual Control; fought with clubs and stones, it killed 20 Indian soldiers." },
+          { id:"cur-f36", term:"Suez Canal blockage (2021)", def:"The giant container ship Ever Given, sailing from China to Europe, ran aground and blocked the canal for six days in March 2021, disrupting global trade." },
+          { id:"cur-f37", term:"Gaza-Israel conflict (2021)", def:"An 11-day war in May 2021 between Israel and Hamas, sparked by tensions at the Al-Aqsa Mosque and evictions in Sheikh Jarrah; ended with an Egyptian-brokered ceasefire." },
+          { id:"cur-f38", term:"Death of Queen Elizabeth II", def:"The longest-reigning British monarch died September 8, 2022, at age 96 after 70 years on the throne." },
+          { id:"cur-f39", term:"Myanmar coup", def:"On February 1, 2021, the military (the Tatmadaw) seized power, overthrowing Aung San Suu Kyi and her National League for Democracy after claiming election fraud." },
+          { id:"cur-f40", term:"Sudan civil war (2023)", def:"Began in April 2023 in Khartoum between the Sudanese Armed Forces under General al-Burhan and the Rapid Support Forces under General Dagalo (\"Hemedti\"), after the 2019 ouster of dictator Omar al-Bashir." },
+          { id:"cur-f41", term:"October 7, 2023", def:"Hamas launched an unprecedented attack on Israel from Gaza with thousands of rockets and cross-border fighters, prompting a massive Israeli response and a full-scale war in Gaza." },
+          { id:"cur-f42", term:"2024 U.K. general election", def:"The Labour Party under Keir Starmer won a decisive victory, ending more than a decade of Conservative rule." }
         ],
         quiz: [
-          { id:"cur-q1", q:"Who became UK Prime Minister in October 2022, replacing Liz Truss?", opts:["Rishi Sunak","Boris Johnson","Keir Starmer","David Cameron"], correct:0 },
-          { id:"cur-q2", q:"What happened at the U.S. Capitol on January 6, 2021?", opts:["A peaceful transfer of power ceremony","An insurrectionist mob stormed the building","A presidential inauguration","A scheduled congressional recess"], correct:1 },
-          { id:"cur-q3", q:"Which container ship became stuck in the Suez Canal in March 2021?", opts:["Ever Given","Queen Mary","Maersk Alabama","Ever Grand"], correct:0 },
-          { id:"cur-q4", q:"Who succeeded Angela Merkel as Chancellor of Germany?", opts:["Frank-Walter Steinmeier","Olaf Scholz","Friedrich Merz","Angela Merkel again"], correct:1 },
-          { id:"cur-q5", q:"When offered a chance to leave Ukraine early in the war, Zelenskyy reportedly declined a ride and instead asked for what?", opts:["Reinforcements","Ammunition","A ceasefire","A meeting with Putin"], correct:1 },
-          { id:"cur-q6", q:"Which party's leader, Keir Starmer, won a decisive UK election victory in 2024?", opts:["Conservative","Liberal Democrat","Labour","Green"], correct:2 },
-          { id:"cur-q7", q:"Whose death in September 2022 ended a 70-year reign in the United Kingdom?", opts:["Prince Philip","Queen Elizabeth II","King Charles III","Princess Diana"], correct:1 },
-          { id:"cur-q8", q:"What conflict began on October 7, 2023, with an attack launched by Hamas?", opts:["The Syrian Civil War","The Gaza War","The Six-Day War","The Yom Kippur War"], correct:1 },
-          { id:"cur-q9", q:"J.D. Vance, the 2024 Republican VP nominee, is a U.S. Senator from which state?", opts:["Ohio","Kentucky","Indiana","Michigan"], correct:0 },
-          { id:"cur-q10", q:"What is the name of Xi Jinping's global infrastructure development policy?", opts:["The Silk Road Initiative","The Belt and Road Initiative","The Great Wall Project","The Pacific Century Plan"], correct:1 }
+          { id:"cur-q1", q:"Rishi Sunak became U.K. Prime Minister in October 2022, replacing whom?", opts:["Boris Johnson","Liz Truss","Theresa May","Keir Starmer"], correct:1 },
+          { id:"cur-q2", q:"Before becoming president of Ukraine in 2019, Volodymyr Zelenskyy worked as a:", opts:["Lawyer","Comedian and actor","Military officer","Journalist"], correct:1 },
+          { id:"cur-q3", q:"Which phrase is Zelenskyy known for saying early in the war when offered evacuation?", opts:["\"We shall never surrender\"","\"I need ammo, not a ride\"","\"Give me liberty\"","\"The die is cast\""], correct:1 },
+          { id:"cur-q4", q:"Who defeated Jair Bolsonaro in Brazil's 2022 presidential election?", opts:["Dilma Rousseff","Luiz In\u00e1cio Lula da Silva","Michel Temer","Fernando Haddad"], correct:1 },
+          { id:"cur-q5", q:"Xi Jinping's international infrastructure-building policy is called the:", opts:["Great Leap Forward","Belt and Road Initiative","Silk Road Compact","Open Door Policy"], correct:1 },
+          { id:"cur-q6", q:"Olaf Scholz became Chancellor of Germany after the retirement of:", opts:["Angela Merkel","Helmut Kohl","Gerhard Schr\u00f6der","Frank-Walter Steinmeier"], correct:0 },
+          { id:"cur-q7", q:"Recep Tayyip Erdo\u011fan was previously mayor of which city?", opts:["Ankara","Istanbul","Izmir","Antalya"], correct:1 },
+          { id:"cur-q8", q:"Before becoming Vice President, Joe Biden served as a U.S. Senator from which state?", opts:["Pennsylvania","Delaware","Maryland","New Jersey"], correct:1 },
+          { id:"cur-q9", q:"Who did President Biden appoint as the first Black woman on the U.S. Supreme Court?", opts:["Sonia Sotomayor","Ketanji Brown Jackson","Elena Kagan","Amy Coney Barrett"], correct:1 },
+          { id:"cur-q10", q:"Which three justices did Donald Trump appoint to the Supreme Court?", opts:["Roberts, Alito, Thomas","Gorsuch, Kavanaugh, Barrett","Sotomayor, Kagan, Jackson","Breyer, Ginsburg, Kennedy"], correct:1 },
+          { id:"cur-q11", q:"Kamala Harris served as Attorney General of which state before joining the U.S. Senate?", opts:["New York","California","Illinois","Texas"], correct:1 },
+          { id:"cur-q12", q:"Nancy Pelosi became the highest-ranking U.S. official to visit which place in August 2022?", opts:["Ukraine","Taiwan","Hong Kong","North Korea"], correct:1 },
+          { id:"cur-q13", q:"Mitch McConnell blocked Senate consideration of which Supreme Court nominee?", opts:["Merrick Garland","Brett Kavanaugh","Neil Gorsuch","Ketanji Brown Jackson"], correct:0 },
+          { id:"cur-q14", q:"Who became the first female mayor of Los Angeles in 2022?", opts:["Gretchen Whitmer","Karen Bass","Kamala Harris","Nancy Pelosi"], correct:1 },
+          { id:"cur-q15", q:"Tim Walz, the 2024 Democratic VP nominee, is governor of which state and was formerly a:", opts:["Wisconsin; lawyer","Minnesota; social studies teacher and football coach","Michigan; engineer","Ohio; venture capitalist"], correct:1 },
+          { id:"cur-q16", q:"J.D. Vance is the author of which memoir?", opts:["Dreams from My Father","Hillbilly Elegy","A Promised Land","The Audacity of Hope"], correct:1 },
+          { id:"cur-q17", q:"The January 6, 2021 attack on the U.S. Capitol occurred during what proceeding?", opts:["A State of the Union address","Certification of Electoral College votes","A Supreme Court confirmation","A budget vote"], correct:1 },
+          { id:"cur-q18", q:"Russia's full-scale invasion of Ukraine began on what date?", opts:["February 24, 2022","March 1, 2021","September 8, 2022","October 7, 2023"], correct:0 },
+          { id:"cur-q19", q:"Shinzo Abe, Japan's longest-serving prime minister, was assassinated in 2022 in which city?", opts:["Tokyo","Kyoto","Nara","Osaka"], correct:2 },
+          { id:"cur-q20", q:"The 2019 Hong Kong protests were triggered by a proposed law allowing:", opts:["New taxes on businesses","Extradition to mainland China","A ban on public gatherings","Mandatory military service"], correct:1 },
+          { id:"cur-q21", q:"In the 2016 Brexit referendum, what percentage of voters chose to leave the EU?", opts:["48%","52%","60%","75%"], correct:1 },
+          { id:"cur-q22", q:"The 2020 Galwan Valley clash was between the militaries of which two countries?", opts:["India and Pakistan","India and China","China and Vietnam","Russia and Georgia"], correct:1 },
+          { id:"cur-q23", q:"Which ship blocked the Suez Canal for six days in March 2021?", opts:["Ever Given","Titan","Evergreen Star","Maersk Alabama"], correct:0 },
+          { id:"cur-q24", q:"Queen Elizabeth II died in September 2022 after how many years on the throne?", opts:["50","60","70","80"], correct:2 },
+          { id:"cur-q25", q:"The February 2021 military coup in Myanmar overthrew which leader?", opts:["Aung San Suu Kyi","Thaksin Shinawatra","Mahathir Mohamad","Rodrigo Duterte"], correct:0 },
+          { id:"cur-q26", q:"The civil war that began in Sudan in April 2023 is between the Sudanese Armed Forces and which group?", opts:["Boko Haram","The Rapid Support Forces","Al-Shabaab","The Janjaweed Militia"], correct:1 },
+          { id:"cur-q27", q:"Which party, led by Keir Starmer, won the 2024 U.K. general election?", opts:["Conservative","Labour","Liberal Democrat","Reform UK"], correct:1 },
+          { id:"cur-q28", q:"Hamas launched a major attack on Israel on which date, starting the war in Gaza?", opts:["May 10, 2021","February 24, 2022","October 7, 2023","January 6, 2021"], correct:2 }
         ]
       },
       {
         id: "usgeo", name: "U.S. Geography", num: "Category 2",
-        desc: "Physical and political geography of the United States.",
+        desc: "State capitals and largest cities, state high points, mountain ranges, major rivers and lakes, and U.S. seismic zones.",
         flashcards: [
-          { id:"usgeo-f1", term:"Denali", def:"Highest point in the United States, located in Alaska, at 20,310 feet." },
-          { id:"usgeo-f2", term:"Mount Whitney", def:"Highest point in the contiguous United States, located in California." },
-          { id:"usgeo-f3", term:"Black Mountain", def:"Highest point in Kentucky, at 4,145 feet." },
-          { id:"usgeo-f4", term:"Missouri River", def:"The longest river in the United States, flowing through Montana, the Dakotas, Nebraska, Iowa, Kansas, and Missouri." },
-          { id:"usgeo-f5", term:"Lake Superior", def:"Largest of the Great Lakes by surface area." },
-          { id:"usgeo-f6", term:"Lake Michigan", def:"The only one of the Great Lakes located entirely within the United States." },
-          { id:"usgeo-f7", term:"Great Salt Lake", def:"The largest saltwater lake in the Western Hemisphere, located in Utah." },
-          { id:"usgeo-f8", term:"Mount Elbert", def:"Highest peak in the Rocky Mountains, located in Colorado." },
-          { id:"usgeo-f9", term:"Mount Mitchell", def:"Highest peak in the Appalachian Mountains, located in North Carolina." },
-          { id:"usgeo-f10", term:"New Madrid Seismic Zone", def:"Site of a powerful 1811-1812 earthquake near the Kentucky Bend, said to have made the Mississippi River run backward." },
-          { id:"usgeo-f11", term:"Rio Grande", def:"River forming much of the border between the United States and Mexico." },
-          { id:"usgeo-f12", term:"Guadalupe Peak", def:"Highest point in Texas." }
+          { id:"usgeo-f1", term:"Denali (Mount McKinley)", def:"Alaska's highest point at 20,310 feet, the highest peak in North America; part of the Alaska Range along with Mount Foraker." },
+          { id:"usgeo-f2", term:"Mount Whitney", def:"California's highest point at 14,505 feet, the highest peak in the contiguous United States; in the Sierra Nevada." },
+          { id:"usgeo-f3", term:"Mount Elbert", def:"Colorado's highest point at 14,440 feet and the highest peak in the Rocky Mountains; Colorado's Rockies also include Mount Massive, Longs Peak, and Pikes Peak." },
+          { id:"usgeo-f4", term:"Mount Rainier", def:"Washington's highest point at 14,411 feet, in the Cascade Range along with Mount Hood (Oregon) and Mount Shasta (California)." },
+          { id:"usgeo-f5", term:"Mount Mitchell", def:"North Carolina's highest point at 6,684 feet, the highest peak in the Appalachian Mountains and the Blue Ridge." },
+          { id:"usgeo-f6", term:"Clingmans Dome", def:"Tennessee's highest point at 6,643 feet, on the Tennessee-North Carolina border in the Appalachians." },
+          { id:"usgeo-f7", term:"Black Mountain", def:"Kentucky's highest point, at 4,145 feet." },
+          { id:"usgeo-f8", term:"Mount Washington", def:"New Hampshire's highest point at 6,288 feet, in the White Mountains; the highest point in the northeastern United States." },
+          { id:"usgeo-f9", term:"Mount Marcy", def:"New York's highest point at 5,344 feet, in the Adirondack Mountains." },
+          { id:"usgeo-f10", term:"Guadalupe Peak", def:"Texas's highest point at 8,751 feet, in the Guadalupe Mountains of West Texas." },
+          { id:"usgeo-f11", term:"Kings Peak", def:"Utah's highest point at 13,534 feet, in the Uinta Mountains." },
+          { id:"usgeo-f12", term:"Gannett Peak", def:"Wyoming's highest point at 13,809 feet." },
+          { id:"usgeo-f13", term:"Mauna Kea", def:"Hawaii's highest point." },
+          { id:"usgeo-f14", term:"Mount Saint Elias", def:"An 18,009-foot peak in the Coast Ranges of Alaska, shared with Canada." },
+          { id:"usgeo-f15", term:"Black Elk Peak (Harney Peak)", def:"South Dakota's highest point at about 7,242 feet, in the Black Hills." },
+          { id:"usgeo-f16", term:"Mount Mansfield", def:"Vermont's highest point at about 4,393 feet, in the Green Mountains." },
+          { id:"usgeo-f17", term:"Lesser mountain ranges", def:"Catskills (Slide Mountain, NY), Bighorns (Cloud Peak, WY/MT), Sawtooth Range (Thompson Peak, ID), Olympic Mountains (Mount Olympus, WA), Klamath Mountains (Mount Eddy, OR/CA)." },
+          { id:"usgeo-f18", term:"Kentucky", def:"Capital Frankfort; largest city Louisville; highest point Black Mountain." },
+          { id:"usgeo-f19", term:"Capitals that aren't the largest city (West)", def:"Nevada: Carson City (Las Vegas); Washington: Olympia (Seattle); Oregon: Salem (Portland); California: Sacramento (Los Angeles); New Mexico: Santa Fe (Albuquerque); Alaska: Juneau (Anchorage)." },
+          { id:"usgeo-f20", term:"Capitals that aren't the largest city (Midwest)", def:"Illinois: Springfield (Chicago); Missouri: Jefferson City (Kansas City); Michigan: Lansing (Detroit); Kansas: Topeka (Wichita); Nebraska: Lincoln (Omaha); Minnesota: St. Paul (Minneapolis); Wisconsin: Madison (Milwaukee)." },
+          { id:"usgeo-f21", term:"Capitals that aren't the largest city (East)", def:"New York: Albany (New York City); Pennsylvania: Harrisburg (Philadelphia); Florida: Tallahassee (Jacksonville); Maryland: Annapolis (Baltimore); Delaware: Dover (Wilmington); Vermont: Montpelier (Burlington); Maine: Augusta (Portland)." },
+          { id:"usgeo-f22", term:"Capitals that aren't the largest city (South & Plains)", def:"Alabama: Montgomery (Birmingham); Louisiana: Baton Rouge (New Orleans); Virginia: Richmond (Virginia Beach); Tennessee: Nashville (Memphis); South Carolina: Columbia (Charleston); Montana: Helena (Billings); South Dakota: Pierre (Sioux Falls); North Dakota: Bismarck (Fargo)." },
+          { id:"usgeo-f23", term:"Most and least populous states", def:"California is the most populous (about 39.5 million), followed by Texas and Florida; Wyoming is the least populous (about 577,000)." },
+          { id:"usgeo-f24", term:"New Madrid Seismic Zone (NMSZ)", def:"A major earthquake zone centered on the Mississippi Valley; the 1811-1812 earthquakes near the Kentucky Bend are said to have made the Mississippi River run backward." },
+          { id:"usgeo-f25", term:"Other U.S. seismic zones", def:"ETSZ (East Tennessee), CSZ (Coastal, near Charleston), NESZ (New England), and the San Andreas Fault along the California coast." },
+          { id:"usgeo-f26", term:"Mississippi River", def:"About 2,350 miles long; flows through or along ten states from Minnesota to Louisiana and is a major transportation route." },
+          { id:"usgeo-f27", term:"Missouri River", def:"The longest river in the United States at about 2,341 miles and a major tributary of the Mississippi; flows through Montana, the Dakotas, Nebraska, Iowa, Kansas, and Missouri." },
+          { id:"usgeo-f28", term:"Yukon River", def:"Flows about 1,979 miles through Canada and Alaska; important during the Klondike Gold Rush." },
+          { id:"usgeo-f29", term:"Rio Grande", def:"About 1,933 miles long; forms part of the U.S.-Mexico border, flowing through Colorado, New Mexico, and Texas; vital for southwestern irrigation." },
+          { id:"usgeo-f30", term:"Colorado River", def:"About 1,450 miles long; carved the Grand Canyon, is dammed by Hoover Dam, and is a major water source for the Southwest." },
+          { id:"usgeo-f31", term:"Columbia and Snake Rivers", def:"The Columbia forms part of the Oregon-Washington border and is key for hydroelectric power and salmon; the Snake (about 1,038 miles) is its major tributary." },
+          { id:"usgeo-f32", term:"Ohio River", def:"About 981 miles long; a major Mississippi tributary that forms borders for Ohio, Indiana, Illinois, Kentucky, West Virginia, and Pennsylvania." },
+          { id:"usgeo-f33", term:"Red and Arkansas Rivers", def:"The Red River (about 800 miles) forms part of the Texas-Oklahoma border; the Arkansas River (about 1,450 miles) flows through Colorado, Kansas, Oklahoma, and Arkansas." },
+          { id:"usgeo-f34", term:"Lake Superior", def:"The largest of the Great Lakes by surface area (31,700 sq. mi.) and the third-largest freshwater lake in the world." },
+          { id:"usgeo-f35", term:"Lake Michigan", def:"The only Great Lake located entirely within the United States; bordered by Michigan, Indiana, Illinois, and Wisconsin." },
+          { id:"usgeo-f36", term:"Lakes Huron, Erie, and Ontario", def:"Huron is the second-largest Great Lake; Erie is the shallowest; Ontario is the smallest and easternmost." },
+          { id:"usgeo-f37", term:"Great Salt Lake", def:"In Utah; the largest saltwater lake in the Western Hemisphere." },
+          { id:"usgeo-f38", term:"Lake Tahoe", def:"On the California-Nevada border; known for its clarity and depth, it is the second-deepest lake in the United States." },
+          { id:"usgeo-f39", term:"Lake Champlain", def:"Forms part of the border between Vermont and New York, with a small portion in Quebec, Canada." },
+          { id:"usgeo-f40", term:"Flathead Lake and Lake of the Woods", def:"Flathead Lake (Montana) is the largest natural freshwater lake west of the Mississippi; Lake of the Woods spans Minnesota, Ontario, and Manitoba." }
         ],
         quiz: [
-          { id:"usgeo-q1", q:"What is the highest point in the contiguous United States?", opts:["Mount Whitney","Denali","Mount Rainier","Mount Elbert"], correct:0 },
-          { id:"usgeo-q2", q:"Frankfort is the capital of which state?", opts:["Tennessee","Kentucky","Ohio","West Virginia"], correct:1 },
-          { id:"usgeo-q3", q:"What is the longest river in the United States?", opts:["Mississippi River","Colorado River","Missouri River","Rio Grande"], correct:2 },
-          { id:"usgeo-q4", q:"Which Great Lake is located entirely within U.S. borders?", opts:["Lake Superior","Lake Huron","Lake Michigan","Lake Erie"], correct:2 },
-          { id:"usgeo-q5", q:"The New Madrid Seismic Zone is linked to a major 1811-1812 earthquake near what area?", opts:["Kentucky Bend","Yellowstone","San Andreas Fault","Cascadia"], correct:0 },
-          { id:"usgeo-q6", q:"What is the highest peak in Colorado's Rocky Mountains?", opts:["Pikes Peak","Longs Peak","Mount Elbert","Mount Massive"], correct:2 },
-          { id:"usgeo-q7", q:"Which river forms part of the border between Texas and Oklahoma?", opts:["Red River","Rio Grande","Arkansas River","Pecos River"], correct:0 },
-          { id:"usgeo-q8", q:"What is the largest saltwater lake in the Western Hemisphere?", opts:["Great Salt Lake","Salton Sea","Lake Tahoe","Mono Lake"], correct:0 },
-          { id:"usgeo-q9", q:"Denali, the highest peak in North America, is located in which state?", opts:["Washington","Colorado","Alaska","California"], correct:2 },
-          { id:"usgeo-q10", q:"Which mountain is the highest point in the Appalachian range?", opts:["Clingmans Dome","Mount Mitchell","Mount Washington","Spruce Knob"], correct:1 }
+          { id:"usgeo-q1", q:"What is the highest peak in North America?", opts:["Mount Whitney","Mount Rainier","Denali (Mount McKinley)","Mount Elbert"], correct:2 },
+          { id:"usgeo-q2", q:"Mount Whitney, the highest peak in the contiguous United States, is in which range?", opts:["Rocky Mountains","Cascade Range","Sierra Nevada","Alaska Range"], correct:2 },
+          { id:"usgeo-q3", q:"What is the highest peak in the Rocky Mountains?", opts:["Pikes Peak","Mount Elbert","Longs Peak","Gannett Peak"], correct:1 },
+          { id:"usgeo-q4", q:"Mount Mitchell, the highest point in the Appalachians, is located in which state?", opts:["Tennessee","Virginia","North Carolina","Georgia"], correct:2 },
+          { id:"usgeo-q5", q:"What is the highest point in Kentucky?", opts:["Black Mountain","Clingmans Dome","Spruce Knob","Cumberland Gap"], correct:0 },
+          { id:"usgeo-q6", q:"Mount Washington, the highest point in the northeastern U.S., is in which range?", opts:["Green Mountains","White Mountains","Adirondacks","Catskills"], correct:1 },
+          { id:"usgeo-q7", q:"Mount Rainier and Mount Hood belong to which mountain range?", opts:["Sierra Nevada","Rocky Mountains","Cascade Range","Olympic Mountains"], correct:2 },
+          { id:"usgeo-q8", q:"What is the capital of Kentucky?", opts:["Louisville","Lexington","Frankfort","Bowling Green"], correct:2 },
+          { id:"usgeo-q9", q:"What is the capital of Nevada?", opts:["Las Vegas","Reno","Carson City","Henderson"], correct:2 },
+          { id:"usgeo-q10", q:"What is the capital of Washington state?", opts:["Seattle","Olympia","Tacoma","Spokane"], correct:1 },
+          { id:"usgeo-q11", q:"What is the capital of Missouri?", opts:["St. Louis","Kansas City","Jefferson City","Springfield"], correct:2 },
+          { id:"usgeo-q12", q:"What is the capital of Florida?", opts:["Miami","Jacksonville","Orlando","Tallahassee"], correct:3 },
+          { id:"usgeo-q13", q:"Which is the most populous U.S. state?", opts:["Texas","California","Florida","New York"], correct:1 },
+          { id:"usgeo-q14", q:"Which is the least populous U.S. state?", opts:["Alaska","Vermont","Wyoming","North Dakota"], correct:2 },
+          { id:"usgeo-q15", q:"The 1811-1812 earthquakes said to have made the Mississippi River run backward occurred in which seismic zone?", opts:["San Andreas","New Madrid","East Tennessee","New England"], correct:1 },
+          { id:"usgeo-q16", q:"What is the longest river in the United States?", opts:["Mississippi","Missouri","Rio Grande","Colorado"], correct:1 },
+          { id:"usgeo-q17", q:"Which river forms part of the border between the United States and Mexico?", opts:["Colorado River","Red River","Rio Grande","Arkansas River"], correct:2 },
+          { id:"usgeo-q18", q:"The Grand Canyon and Hoover Dam are both associated with which river?", opts:["Colorado River","Columbia River","Snake River","Rio Grande"], correct:0 },
+          { id:"usgeo-q19", q:"Which river was important during the Klondike Gold Rush?", opts:["Columbia","Snake","Yukon","Missouri"], correct:2 },
+          { id:"usgeo-q20", q:"The Snake River is a major tributary of which river?", opts:["Colorado","Columbia","Missouri","Mississippi"], correct:1 },
+          { id:"usgeo-q21", q:"Which river forms part of the border between Texas and Oklahoma?", opts:["Arkansas River","Red River","Rio Grande","Brazos River"], correct:1 },
+          { id:"usgeo-q22", q:"Which is the largest of the Great Lakes by surface area?", opts:["Lake Michigan","Lake Huron","Lake Superior","Lake Erie"], correct:2 },
+          { id:"usgeo-q23", q:"Which Great Lake lies entirely within the United States?", opts:["Lake Superior","Lake Michigan","Lake Huron","Lake Ontario"], correct:1 },
+          { id:"usgeo-q24", q:"Which is the shallowest of the Great Lakes?", opts:["Lake Erie","Lake Ontario","Lake Huron","Lake Michigan"], correct:0 },
+          { id:"usgeo-q25", q:"The Great Salt Lake, the largest saltwater lake in the Western Hemisphere, is in which state?", opts:["Nevada","Utah","Arizona","Idaho"], correct:1 },
+          { id:"usgeo-q26", q:"Lake Tahoe, the second-deepest lake in the U.S., sits on the border of which two states?", opts:["Oregon and Idaho","California and Nevada","Utah and Colorado","Washington and Oregon"], correct:1 },
+          { id:"usgeo-q27", q:"Which lake is the largest natural freshwater lake west of the Mississippi?", opts:["Lake Tahoe","Great Salt Lake","Flathead Lake","Lake of the Woods"], correct:2 },
+          { id:"usgeo-q28", q:"Lake Champlain forms part of the border between which two states?", opts:["Vermont and New York","Maine and New Hampshire","Michigan and Wisconsin","Minnesota and Wisconsin"], correct:0 }
         ]
       },
       {
         id: "worldgeo", name: "World Geography", num: "Category 3",
-        desc: "Physical and political geography of the world, plus maps.",
+        desc: "The world's major mountain ranges, oceans and seas, rivers, and lakes, plus key straits and borders.",
         flashcards: [
-          { id:"worldgeo-f1", term:"Mount Everest", def:"The world's tallest mountain, located in the Himalayas." },
-          { id:"worldgeo-f2", term:"Nile River", def:"The longest river in the world, flowing through northeast Africa." },
-          { id:"worldgeo-f3", term:"Amazon River", def:"The river with the largest discharge volume in the world, flowing through South America." },
-          { id:"worldgeo-f4", term:"Challenger Deep", def:"The deepest point in the ocean, located in the Mariana Trench in the Pacific." },
-          { id:"worldgeo-f5", term:"K2", def:"The second-highest mountain in the world, located in the Karakoram Range." },
-          { id:"worldgeo-f6", term:"Lake Baikal", def:"The deepest and oldest freshwater lake in the world, located in Siberia, Russia." },
-          { id:"worldgeo-f7", term:"Dead Sea", def:"An extremely salty body of water bordering Jordan, Israel, and the West Bank." },
-          { id:"worldgeo-f8", term:"Black Sea", def:"A sea connected to the Mediterranean through the Bosporus Strait." },
-          { id:"worldgeo-f9", term:"Caspian Sea", def:"The largest enclosed inland body of water in the world." },
-          { id:"worldgeo-f10", term:"Mont Blanc", def:"The highest peak in the Alps." },
-          { id:"worldgeo-f11", term:"Aconcagua", def:"The highest peak in South America, located in the Andes." },
-          { id:"worldgeo-f12", term:"Yangtze River", def:"The longest river in Asia, flowing through China." }
+          { id:"worldgeo-f1", term:"Himalayas", def:"Span Nepal, India, Bhutan, China, Pakistan, and others; home to Mount Everest (29,032 feet, the world's highest), K2, and Kangchenjunga." },
+          { id:"worldgeo-f2", term:"Karakoram Range", def:"In Pakistan, India, and China; home to K2 (28,251 feet), the world's second-highest peak, plus Gasherbrum I and II." },
+          { id:"worldgeo-f3", term:"Andes", def:"Run through Argentina, Chile, Peru, Bolivia, Ecuador, Colombia, and Venezuela; highest peak is Aconcagua (22,841 feet), the tallest mountain outside Asia." },
+          { id:"worldgeo-f4", term:"Alps", def:"Span France, Switzerland, Italy, Austria, Germany, and Slovenia; highest peak is Mont Blanc (15,781 feet); also home to the Matterhorn." },
+          { id:"worldgeo-f5", term:"Caucasus Mountains", def:"Between Russia, Georgia, Azerbaijan, and Armenia; highest peak is Mount Elbrus (18,510 feet), Europe's tallest." },
+          { id:"worldgeo-f6", term:"Atlas Mountains", def:"In Morocco, Algeria, and Tunisia; highest peak is Toubkal (13,671 feet)." },
+          { id:"worldgeo-f7", term:"Rwenzori Mountains", def:"On the Uganda-Democratic Republic of the Congo border; highest peak is Margherita Peak (16,795 feet) on Mount Stanley." },
+          { id:"worldgeo-f8", term:"Southern Alps", def:"New Zealand's main range; highest peak is Aoraki / Mount Cook (12,218 feet)." },
+          { id:"worldgeo-f9", term:"Other ranges on the world map", def:"Urals (Russia, Mount Narodnaya), Scandinavian Mountains (Galdh\u00f8piggen), Altai (Belukha), Drakensberg (South Africa, Thabana Ntlenyana), Great Dividing Range (Australia, Mount Kosciuszko), Transantarctic Mountains (Mount Tyree)." },
+          { id:"worldgeo-f10", term:"Pacific Ocean", def:"The largest ocean (about 63 million square miles); its deepest point is Challenger Deep in the Mariana Trench at 36,070 feet." },
+          { id:"worldgeo-f11", term:"Atlantic Ocean", def:"The second-largest ocean (about 41 million square miles); its deepest point is the Puerto Rico Trench at 28,232 feet." },
+          { id:"worldgeo-f12", term:"Indian Ocean", def:"The third-largest ocean (about 28 million square miles); its deepest point is the Java Trench at 23,812 feet." },
+          { id:"worldgeo-f13", term:"Southern and Arctic Oceans", def:"The Southern (Antarctic) Ocean is the youngest, surrounding Antarctica; the Arctic Ocean is the smallest and shallowest, surrounded by North America, Eurasia, and Greenland." },
+          { id:"worldgeo-f14", term:"Mediterranean Sea", def:"Surrounded by Southern Europe, North Africa, and Western Asia; connected to the Atlantic through the Strait of Gibraltar." },
+          { id:"worldgeo-f15", term:"Red Sea", def:"Separates the Arabian Peninsula from Northeast Africa; connects to the Indian Ocean through the Bab el Mandeb strait; known for coral reefs." },
+          { id:"worldgeo-f16", term:"Black Sea", def:"Bordered by Ukraine, Russia, Turkey, Bulgaria, Romania, and Georgia; connected to the Mediterranean through the Bosporus Strait at Istanbul." },
+          { id:"worldgeo-f17", term:"South China Sea", def:"Bordered by China, Vietnam, the Philippines, Malaysia, Brunei, Indonesia, and Taiwan; a major shipping route with contested territorial claims." },
+          { id:"worldgeo-f18", term:"Baltic Sea", def:"Bordered by Sweden, Finland, Russia, Estonia, Latvia, Lithuania, Poland, Germany, and Denmark; connected to the North Sea through the Danish straits." },
+          { id:"worldgeo-f19", term:"Caspian Sea", def:"The largest enclosed inland body of water, bordered by Russia, Kazakhstan, Turkmenistan, Iran, and Azerbaijan; rich in oil and natural gas." },
+          { id:"worldgeo-f20", term:"Caribbean and Arabian Seas", def:"The Caribbean is surrounded by its islands, Mexico, Central America, and northern South America; the Arabian Sea is bordered by the Arabian Peninsula, India, Pakistan, and the Horn of Africa." },
+          { id:"worldgeo-f21", term:"Nile River", def:"The longest river in Africa at about 4,130 miles, flowing through Egypt, Sudan, South Sudan, Ethiopia, Uganda, and others; a cradle of civilization." },
+          { id:"worldgeo-f22", term:"Amazon River", def:"About 4,000 miles long through Brazil, Peru, Colombia, and others; the largest river in the world by discharge volume." },
+          { id:"worldgeo-f23", term:"Yangtze River", def:"The longest river in Asia at about 3,917 miles, flowing through China past Chongqing, Wuhan, and Shanghai." },
+          { id:"worldgeo-f24", term:"Yellow River (Huang He)", def:"About 3,395 miles long in China; often called the \"Cradle of Chinese Civilization.\"" },
+          { id:"worldgeo-f25", term:"Congo River", def:"About 2,922 miles through the Democratic Republic of the Congo and Republic of the Congo; the world's second-largest river by discharge." },
+          { id:"worldgeo-f26", term:"Rivers of Russia and Siberia", def:"The Yenisei (3,445 miles) and Ob-Irtysh system flow through Siberia; the Amur forms part of the Russia-China border; the Ural forms part of the Russia-Kazakhstan border." },
+          { id:"worldgeo-f27", term:"Volga River", def:"The longest river in Europe at about 2,194 miles, entirely within Russia." },
+          { id:"worldgeo-f28", term:"Danube River", def:"The second-longest river in Europe at about 1,780 miles, flowing through ten countries including Germany, Austria, Hungary, and Romania." },
+          { id:"worldgeo-f29", term:"Dnieper and Don Rivers", def:"The Dnieper flows through Belarus and Ukraine into the Black Sea; the Don flows through Russia into the Sea of Azov." },
+          { id:"worldgeo-f30", term:"Rivers of Western Europe", def:"The Loire is France's longest river; the Rhine runs from Switzerland to the Netherlands; the Elbe flows through the Czech Republic and Germany; the Thames flows through London." },
+          { id:"worldgeo-f31", term:"Tagus River", def:"Flows through Spain and Portugal, passing both capital cities, Madrid and Lisbon." },
+          { id:"worldgeo-f32", term:"Paran\u00e1-Paraguay-Uruguay system", def:"A roughly 3,032-mile South American river system through Brazil, Paraguay, Argentina, and Uruguay; important for commerce." },
+          { id:"worldgeo-f33", term:"Lake Baikal", def:"In Siberia, Russia; the deepest and oldest freshwater lake in the world, known for unique biodiversity." },
+          { id:"worldgeo-f34", term:"Lake Tanganyika", def:"The second-oldest and second-deepest freshwater lake in the world; borders Tanzania, the DRC, Burundi, and Zambia." },
+          { id:"worldgeo-f35", term:"Lake Victoria", def:"The largest tropical lake in the world and a vital source of the Nile; borders Uganda, Kenya, and Tanzania." },
+          { id:"worldgeo-f36", term:"Great Slave and Great Bear Lakes", def:"Both in Canada's Northwest Territories: Great Slave is the deepest lake in North America; Great Bear is the largest lake entirely within Canada." },
+          { id:"worldgeo-f37", term:"Lake Maracaibo", def:"In Venezuela; the largest lake in South America, famous for its frequent lightning storms." },
+          { id:"worldgeo-f38", term:"Lake Malawi (Lake Nyasa)", def:"A Great Rift Valley lake bordering Malawi, Mozambique, and Tanzania; rich in biodiversity." },
+          { id:"worldgeo-f39", term:"Dead Sea", def:"Bordering Jordan, Israel, and the West Bank; one of the saltiest bodies of water in the world." }
         ],
         quiz: [
-          { id:"worldgeo-q1", q:"What is the world's tallest mountain?", opts:["K2","Mount Everest","Kangchenjunga","Denali"], correct:1 },
-          { id:"worldgeo-q2", q:"What is the longest river in the world?", opts:["Amazon River","Yangtze River","Nile River","Mississippi River"], correct:2 },
-          { id:"worldgeo-q3", q:"Where is the deepest point in the ocean located?", opts:["Puerto Rico Trench","Java Trench","Mariana Trench","Tonga Trench"], correct:2 },
-          { id:"worldgeo-q4", q:"Which sea, bordering Israel, Jordan, and the West Bank, is known for extreme salt concentration?", opts:["Red Sea","Dead Sea","Caspian Sea","Black Sea"], correct:1 },
-          { id:"worldgeo-q5", q:"K2 is the second-highest mountain in the world and is part of which range?", opts:["Himalayas","Andes","Karakoram Range","Alps"], correct:2 },
-          { id:"worldgeo-q6", q:"Which lake is considered the deepest and oldest freshwater lake in the world?", opts:["Lake Victoria","Lake Baikal","Lake Tanganyika","Caspian Sea"], correct:1 },
-          { id:"worldgeo-q7", q:"What is the largest ocean by area?", opts:["Atlantic Ocean","Indian Ocean","Pacific Ocean","Arctic Ocean"], correct:2 },
-          { id:"worldgeo-q8", q:"Which river has the largest discharge volume of any river in the world?", opts:["Nile River","Amazon River","Congo River","Yangtze River"], correct:1 },
-          { id:"worldgeo-q9", q:"The Andes mountain range runs primarily through which continent?", opts:["Africa","South America","Asia","Europe"], correct:1 },
-          { id:"worldgeo-q10", q:"Which sea connects to the Mediterranean Sea through the Bosporus Strait?", opts:["Caspian Sea","Red Sea","Black Sea","Arabian Sea"], correct:2 }
+          { id:"worldgeo-q1", q:"What is the highest mountain in the world?", opts:["K2","Mount Everest","Kangchenjunga","Aconcagua"], correct:1 },
+          { id:"worldgeo-q2", q:"K2, the world's second-highest peak, is in which mountain range?", opts:["Himalayas","Karakoram","Hindu Kush","Pamirs"], correct:1 },
+          { id:"worldgeo-q3", q:"Aconcagua, the highest peak outside Asia, is in which range?", opts:["Alps","Rockies","Andes","Caucasus"], correct:2 },
+          { id:"worldgeo-q4", q:"What is the highest peak in the Alps?", opts:["Matterhorn","Mont Blanc","Mount Elbrus","Dufourspitze"], correct:1 },
+          { id:"worldgeo-q5", q:"Mount Elbrus, Europe's tallest peak, is in which mountain range?", opts:["Alps","Urals","Caucasus","Carpathians"], correct:2 },
+          { id:"worldgeo-q6", q:"The Atlas Mountains run through Morocco, Algeria, and which other country?", opts:["Egypt","Libya","Tunisia","Mali"], correct:2 },
+          { id:"worldgeo-q7", q:"Aoraki / Mount Cook is the highest peak of which country's Southern Alps?", opts:["Australia","New Zealand","Chile","Argentina"], correct:1 },
+          { id:"worldgeo-q8", q:"What is the deepest point in the world's oceans?", opts:["Puerto Rico Trench","Java Trench","Challenger Deep","Tonga Trench"], correct:2 },
+          { id:"worldgeo-q9", q:"Which ocean is the smallest and shallowest?", opts:["Southern","Arctic","Indian","Atlantic"], correct:1 },
+          { id:"worldgeo-q10", q:"The Mediterranean Sea connects to the Atlantic Ocean through which strait?", opts:["Bosporus","Bab el Mandeb","Strait of Gibraltar","Strait of Hormuz"], correct:2 },
+          { id:"worldgeo-q11", q:"The Black Sea connects to the Mediterranean through which strait?", opts:["Strait of Gibraltar","Bosporus Strait","Bab el Mandeb","Strait of Malacca"], correct:1 },
+          { id:"worldgeo-q12", q:"The Red Sea separates the Arabian Peninsula from which continent?", opts:["Europe","Asia","Africa","Australia"], correct:2 },
+          { id:"worldgeo-q13", q:"What is the largest enclosed inland body of water in the world?", opts:["Lake Superior","Caspian Sea","Lake Baikal","Lake Victoria"], correct:1 },
+          { id:"worldgeo-q14", q:"What is the longest river in Africa?", opts:["Congo","Niger","Nile","Zambezi"], correct:2 },
+          { id:"worldgeo-q15", q:"Which river has the largest discharge volume in the world?", opts:["Nile","Amazon","Congo","Yangtze"], correct:1 },
+          { id:"worldgeo-q16", q:"What is the longest river in Asia?", opts:["Yellow River","Mekong","Yangtze","Yenisei"], correct:2 },
+          { id:"worldgeo-q17", q:"Which river is often called the \"Cradle of Chinese Civilization\"?", opts:["Yangtze","Yellow River (Huang He)","Mekong","Pearl River"], correct:1 },
+          { id:"worldgeo-q18", q:"What is the longest river in Europe?", opts:["Danube","Rhine","Volga","Dnieper"], correct:2 },
+          { id:"worldgeo-q19", q:"The Danube, Europe's second-longest river, flows through roughly how many countries?", opts:["Three","Five","Ten","Fifteen"], correct:2 },
+          { id:"worldgeo-q20", q:"The Amur River forms part of the border between Russia and which country?", opts:["Mongolia","China","Kazakhstan","Japan"], correct:1 },
+          { id:"worldgeo-q21", q:"The Tagus River flows through which two capital cities?", opts:["Paris and Brussels","Madrid and Lisbon","Rome and Florence","Vienna and Budapest"], correct:1 },
+          { id:"worldgeo-q22", q:"The Thames River flows through which city?", opts:["Dublin","Edinburgh","London","Manchester"], correct:2 },
+          { id:"worldgeo-q23", q:"What is the deepest and oldest freshwater lake in the world?", opts:["Lake Tanganyika","Lake Baikal","Lake Superior","Great Slave Lake"], correct:1 },
+          { id:"worldgeo-q24", q:"Lake Victoria, the largest tropical lake in the world, is a major source of which river?", opts:["Congo","Niger","Nile","Zambezi"], correct:2 },
+          { id:"worldgeo-q25", q:"Which lake is the deepest in North America?", opts:["Lake Superior","Great Bear Lake","Great Slave Lake","Lake Tahoe"], correct:2 },
+          { id:"worldgeo-q26", q:"Lake Maracaibo, known for its frequent lightning storms, is the largest lake in which continent?", opts:["Africa","Asia","South America","Europe"], correct:2 },
+          { id:"worldgeo-q27", q:"The Dead Sea borders Jordan, the West Bank, and which country?", opts:["Egypt","Israel","Syria","Lebanon"], correct:1 },
+          { id:"worldgeo-q28", q:"Mount Kosciuszko is the highest peak of which Australian range?", opts:["Blue Mountains","Great Dividing Range","Flinders Ranges","MacDonnell Ranges"], correct:1 }
         ]
       },
       {
         id: "geoterms", name: "Geography Terms", num: "Category 4",
-        desc: "Climate, land, resources, and map-skills vocabulary.",
+        desc: "Map skills, latitude and longitude, the five themes, climate zones, population, culture, economic systems, governments, and resources.",
         flashcards: [
-          { id:"geoterms-f1", term:"Absolute location", def:"The exact position of a place on Earth." },
-          { id:"geoterms-f2", term:"Relative location", def:"The location of a place as described by the places near it." },
-          { id:"geoterms-f3", term:"Prime Meridian", def:"The line of longitude at 0 degrees, running through Greenwich, England." },
-          { id:"geoterms-f4", term:"Equator", def:"The imaginary line circling the globe at its widest point, dividing Earth into two hemispheres." },
-          { id:"geoterms-f5", term:"Plate tectonics", def:"The theory that Earth's crust is made of huge, slowly moving slabs of rock." },
-          { id:"geoterms-f6", term:"Weathering", def:"The breaking down of rocks by wind, rain, or ice." },
-          { id:"geoterms-f7", term:"Erosion", def:"The process by which water, wind, or ice wears away landforms and carries the material elsewhere." },
-          { id:"geoterms-f8", term:"Push factor", def:"A force that drives people to leave a location." },
-          { id:"geoterms-f9", term:"Pull factor", def:"An attraction that draws people to a new location." },
-          { id:"geoterms-f10", term:"Urbanization", def:"The growth of city populations caused by people moving to cities." },
-          { id:"geoterms-f11", term:"Capitalism", def:"An economic system where people and private companies own businesses and industries." },
-          { id:"geoterms-f12", term:"Socialism", def:"An economic system where the government owns basic industries like transportation and banking." },
-          { id:"geoterms-f13", term:"Theocracy", def:"A government headed by religious leaders who claim to rule by divine authority." },
-          { id:"geoterms-f14", term:"Nonrenewable resource", def:"A resource that cannot be replaced once it's used, such as oil, coal, or minerals." },
-          { id:"geoterms-f15", term:"Subsistence farming", def:"Farming that provides only enough food to meet the needs of a family or village." }
+          { id:"geoterms-f1", term:"Latitude lines (parallels)", def:"Imaginary lines that circle the Earth parallel to the Equator, used to measure distance north or south of the Equator in degrees." },
+          { id:"geoterms-f2", term:"Longitude lines (meridians)", def:"Imaginary lines running from pole to pole, used to measure distance east or west of the Prime Meridian in degrees." },
+          { id:"geoterms-f3", term:"Prime Meridian", def:"The 0-degree line of longitude running through Greenwich, England, from which east and west longitude are measured." },
+          { id:"geoterms-f4", term:"Equator", def:"The imaginary line circling the globe at its widest point, dividing Earth into two hemispheres; the reference point for north and south latitude." },
+          { id:"geoterms-f5", term:"Degrees and minutes", def:"Latitude and longitude are measured in degrees; a minute is 1/60 of a degree." },
+          { id:"geoterms-f6", term:"Absolute vs. relative location", def:"Absolute location is a place's exact position on Earth; relative location describes it by the places near it." },
+          { id:"geoterms-f7", term:"Five themes of geography", def:"Location, place (physical and human features), human-environment interaction, movement (how people, goods, and ideas travel), and region (an area with a unifying characteristic)." },
+          { id:"geoterms-f8", term:"Map scale and distortion", def:"Scale is the size of an area on a map compared with its actual size; distortion is a misrepresentation of true shape, and every map projection produces some." },
+          { id:"geoterms-f9", term:"Compass rose and directions", def:"A map feature showing the four cardinal directions (north, south, east, west); intermediate directions fall between them (NE, NW, SE, SW)." },
+          { id:"geoterms-f10", term:"Key (legend)", def:"The section of a map that explains the symbols used for map features." },
+          { id:"geoterms-f11", term:"Revolution vs. rotation", def:"A revolution is one complete orbit of Earth around the sun (365\u00bc days); a rotation is one spin of Earth on its axis (about 24 hours)." },
+          { id:"geoterms-f12", term:"Low, middle, and high latitudes", def:"Low latitudes (tropics) lie between the Tropics of Cancer and Capricorn; middle latitudes (temperate zones) lie between the tropics and the polar circles; high latitudes (polar zones) lie between the Arctic/Antarctic Circles and the poles." },
+          { id:"geoterms-f13", term:"Plate tectonics", def:"The theory that Earth's crust is made of huge, slowly moving slabs of rock called plates." },
+          { id:"geoterms-f14", term:"Weathering vs. erosion", def:"Weathering is the breaking down of rocks by wind, rain, or ice; erosion is the wearing away of landforms and carrying of material to another place." },
+          { id:"geoterms-f15", term:"Weather vs. climate", def:"Weather is the condition of the lower atmosphere in one place over a short time; climate is the weather patterns an area typically experiences over a long period." },
+          { id:"geoterms-f16", term:"Vertical climate", def:"Weather patterns influenced by elevation; the higher the elevation, the colder the climate." },
+          { id:"geoterms-f17", term:"Tropical climate", def:"Warm year-round with distinct wet and dry seasons; found between the Tropics of Cancer and Capricorn, including rainforests and savannas." },
+          { id:"geoterms-f18", term:"Arid climate", def:"Receives less than 10 inches (250 mm) of precipitation a year; deserts with hot days, cool nights, and sparse vegetation." },
+          { id:"geoterms-f19", term:"Tundra climate", def:"A cold, treeless biome with a short growing season, permafrost, and only mosses, lichens, and small shrubs; found in polar regions and high elevations." },
+          { id:"geoterms-f20", term:"Mediterranean climate", def:"Hot, dry summers and mild, wet winters; found around the Mediterranean Sea and in parts of California, Chile, South Africa, and Australia." },
+          { id:"geoterms-f21", term:"Humid subtropical climate", def:"Hot, humid summers and mild to cool winters; typically on the east coasts of continents, prone to thunderstorms and occasional hurricanes." },
+          { id:"geoterms-f22", term:"Subarctic and ice cap climates", def:"Subarctic: long, very cold winters covered by boreal forest (taiga). Ice cap: ground permanently covered by ice and snow, as in Antarctica and Greenland." },
+          { id:"geoterms-f23", term:"Population density and distribution", def:"Density is the average number of people in a given area (often a square mile); distribution is how a population is spread over an area." },
+          { id:"geoterms-f24", term:"Birth rate and death rate", def:"The number of live births, or deaths, each year per 1,000 people." },
+          { id:"geoterms-f25", term:"Push-pull theory", def:"The idea that people migrate because things in their lives \"push\" them to leave and things in a new place \"pull\" them there." },
+          { id:"geoterms-f26", term:"Urbanization", def:"The growth of city populations caused by the movement of people to cities; urban areas have high population density, rural areas low, and suburban areas are residential zones near cities." },
+          { id:"geoterms-f27", term:"Nuclear vs. extended family", def:"A nuclear family includes parents and children; an extended family may include grandparents, aunts, uncles, and cousins living with or near each other." },
+          { id:"geoterms-f28", term:"Cultural diffusion vs. acculturation", def:"Diffusion is the movement of customs and ideas from one culture to another; acculturation is the process of accepting, borrowing, and exchanging ideas among cultures." },
+          { id:"geoterms-f29", term:"Producer, consumer, goods, services", def:"A producer makes products others use; a consumer buys goods or services; goods are products that are made; services are work done for other people." },
+          { id:"geoterms-f30", term:"Capitalism (market economy)", def:"An economic system in which people and privately owned companies own basic and non-basic businesses, and buyers and sellers make production decisions." },
+          { id:"geoterms-f31", term:"Socialism (mixed economy)", def:"An economic system in which the government owns basic industries such as transportation and banking while non-basic industries are privately owned." },
+          { id:"geoterms-f32", term:"Communism (command economy)", def:"A system in which a central government owns all basic and non-basic industries and makes all decisions about production and consumption." },
+          { id:"geoterms-f33", term:"Direct vs. representative democracy", def:"In a direct democracy people participate directly in decisions; in a representative democracy (republic) people elect representatives to run the country." },
+          { id:"geoterms-f34", term:"Monarchy and constitutional monarchy", def:"A monarchy is headed by a king or queen who inherits the throne; in a constitutional monarchy the monarch is head of state with limited powers, as in the U.K." },
+          { id:"geoterms-f35", term:"Dictatorship and theocracy", def:"In a dictatorship leaders have complete power and are not answerable to the people; a theocracy is headed by religious leaders who claim to rule by divine authority." },
+          { id:"geoterms-f36", term:"Renewable vs. nonrenewable resources", def:"Renewable resources like timber and fish can be regenerated if used carefully; nonrenewable resources like oil, coal, and minerals cannot be replaced once used." },
+          { id:"geoterms-f37", term:"Fossil fuel", def:"A nonrenewable resource such as coal, oil, or natural gas, created from the remains of plants and animals." },
+          { id:"geoterms-f38", term:"Developed vs. developing nation", def:"A developed nation has a modern industrial society and well-developed economy; a developing nation has low industrial production and often lacks modern technology." },
+          { id:"geoterms-f39", term:"Commercial vs. subsistence farming", def:"Commercial farming is large-scale, done by companies for sale in outside markets; subsistence farming provides only enough for a family or village." },
+          { id:"geoterms-f40", term:"Imperialism, colonialism, nationalism", def:"Imperialism is one country controlling another's economic and political life; colonialism is extending control over foreign territory for economic benefit; nationalism is pride in one's homeland." }
         ],
         quiz: [
-          { id:"geoterms-q1", q:"What term describes the exact position of a place on Earth?", opts:["Relative location","Absolute location","Region","Scale"], correct:1 },
-          { id:"geoterms-q2", q:"What is the imaginary line at 0 degrees longitude called?", opts:["Equator","Prime Meridian","Tropic of Cancer","International Date Line"], correct:1 },
-          { id:"geoterms-q3", q:"An economic system where the government owns basic industries but allows some private ownership is called:", opts:["Capitalism","Communism","Socialism","Feudalism"], correct:2 },
-          { id:"geoterms-q4", q:"What term describes people leaving a place because of negative conditions there?", opts:["Pull factor","Push factor","Cultural diffusion","Migration pattern"], correct:1 },
-          { id:"geoterms-q5", q:"A government headed by religious leaders claiming divine authority is a:", opts:["Monarchy","Theocracy","Oligarchy","Republic"], correct:1 },
-          { id:"geoterms-q6", q:"What is the term for a resource that cannot be replaced once it's used, like oil or coal?", opts:["Renewable resource","Nonrenewable resource","Flow resource","Capital good"], correct:1 },
-          { id:"geoterms-q7", q:"Farming that produces only enough for a family or village's needs is called:", opts:["Commercial farming","Subsistence farming","Industrial farming","Cash-crop farming"], correct:1 },
-          { id:"geoterms-q8", q:"What process describes the breaking down of rocks by wind, rain, or ice?", opts:["Erosion","Weathering","Deforestation","Sedimentation"], correct:1 },
-          { id:"geoterms-q9", q:"A system of government where citizens elect representatives to run the country is a:", opts:["Direct democracy","Representative democracy","Monarchy","Theocracy"], correct:1 },
-          { id:"geoterms-q10", q:"What term describes one country controlling the economic and political life of another?", opts:["Nationalism","Imperialism","Colonialism","Acculturation"], correct:1 }
+          { id:"geoterms-q1", q:"Lines of latitude are also called:", opts:["Meridians","Parallels","Tropics","Hemispheres"], correct:1 },
+          { id:"geoterms-q2", q:"Lines of longitude are also called:", opts:["Parallels","Meridians","Equators","Axes"], correct:1 },
+          { id:"geoterms-q3", q:"The Prime Meridian passes through which city?", opts:["London","Greenwich, England","Paris","Washington, D.C."], correct:1 },
+          { id:"geoterms-q4", q:"A minute of latitude or longitude is what fraction of a degree?", opts:["1/10","1/30","1/60","1/100"], correct:2 },
+          { id:"geoterms-q5", q:"Describing a place by the places near it is called its:", opts:["Absolute location","Relative location","Region","Site"], correct:1 },
+          { id:"geoterms-q6", q:"Which theme of geography explains how people, goods, and ideas get from one place to another?", opts:["Place","Region","Movement","Location"], correct:2 },
+          { id:"geoterms-q7", q:"The part of a map that explains its symbols is the:", opts:["Compass rose","Scale","Key (legend)","Grid"], correct:2 },
+          { id:"geoterms-q8", q:"One complete orbit of the Earth around the sun is called a:", opts:["Rotation","Revolution","Season","Axis"], correct:1 },
+          { id:"geoterms-q9", q:"About how long does the Earth take to rotate once on its axis?", opts:["12 hours","24 hours","7 days","365 days"], correct:1 },
+          { id:"geoterms-q10", q:"The region between the Tropic of Cancer and the Tropic of Capricorn is called the:", opts:["High latitudes","Middle latitudes","Low latitudes (tropics)","Polar zone"], correct:2 },
+          { id:"geoterms-q11", q:"The theory that Earth's crust is made of slowly moving slabs of rock is called:", opts:["Erosion","Plate tectonics","Continental shelf","Weathering"], correct:1 },
+          { id:"geoterms-q12", q:"The breaking down of rocks by wind, rain, or ice is called:", opts:["Erosion","Weathering","Deposition","Sedimentation"], correct:1 },
+          { id:"geoterms-q13", q:"The weather patterns an area typically experiences over a long period is its:", opts:["Weather","Climate","Atmosphere","Precipitation"], correct:1 },
+          { id:"geoterms-q14", q:"An arid climate receives less than how much precipitation per year?", opts:["5 inches","10 inches","20 inches","30 inches"], correct:1 },
+          { id:"geoterms-q15", q:"Which climate has hot, dry summers and mild, wet winters?", opts:["Humid subtropical","Mediterranean","Tropical","Subarctic"], correct:1 },
+          { id:"geoterms-q16", q:"Permanently frozen ground found in tundra regions is called:", opts:["Taiga","Permafrost","Tundra crust","Glacier"], correct:1 },
+          { id:"geoterms-q17", q:"The boreal forest found in subarctic climates is also called:", opts:["Savanna","Taiga","Tundra","Steppe"], correct:1 },
+          { id:"geoterms-q18", q:"The average number of people in a given area is called:", opts:["Population distribution","Population density","Birth rate","Migration"], correct:1 },
+          { id:"geoterms-q19", q:"Birth rate and death rate are measured per how many people?", opts:["100","1,000","10,000","100,000"], correct:1 },
+          { id:"geoterms-q20", q:"The theory that people migrate because of forces driving them out and attractions drawing them in is the:", opts:["Diffusion theory","Push-pull theory","Urbanization theory","Acculturation theory"], correct:1 },
+          { id:"geoterms-q21", q:"The movement of customs and ideas from one culture to another is called:", opts:["Acculturation","Cultural diffusion","Nationalism","Colonialism"], correct:1 },
+          { id:"geoterms-q22", q:"In which economic system does the government own basic industries like transportation and banking, while other industries stay private?", opts:["Capitalism","Socialism","Communism","Feudalism"], correct:1 },
+          { id:"geoterms-q23", q:"An economic system in which a central government makes all production and consumption decisions is a:", opts:["Market economy","Mixed economy","Command economy","Traditional economy"], correct:2 },
+          { id:"geoterms-q24", q:"A system in which people elect representatives to run the affairs of the country is a:", opts:["Direct democracy","Representative democracy (republic)","Monarchy","Theocracy"], correct:1 },
+          { id:"geoterms-q25", q:"The United Kingdom's government, where the monarch is head of state with limited powers, is a:", opts:["Dictatorship","Theocracy","Constitutional monarchy","Direct democracy"], correct:2 },
+          { id:"geoterms-q26", q:"A government headed by religious leaders who claim to rule by divine authority is a:", opts:["Monarchy","Theocracy","Oligarchy","Republic"], correct:1 },
+          { id:"geoterms-q27", q:"Which of these is a nonrenewable resource?", opts:["Timber","Fish","Coal","Water"], correct:2 },
+          { id:"geoterms-q28", q:"Farming that provides only enough food for a family or village is called:", opts:["Commercial farming","Subsistence farming","Industrial farming","Plantation farming"], correct:1 },
+          { id:"geoterms-q29", q:"The control by one country of the economic and political life of another is called:", opts:["Nationalism","Imperialism","Acculturation","Urbanization"], correct:1 },
+          { id:"geoterms-q30", q:"The feeling of pride in one's homeland is called:", opts:["Imperialism","Colonialism","Nationalism","Diffusion"], correct:2 }
         ]
       },
       {
         id: "civ1", name: "River Valleys, India & China", num: "Category 5",
-        desc: "World civilization: river valleys, the Fertile Crescent, India, and China.",
+        desc: "The Yellow River valley and early Chinese dynasties from Xia to Han; the Indus Valley, Vedic period, Maurya and Gupta empires, and the caste system.",
         flashcards: [
-          { id:"civ1-f1", term:"Yellow River Valley Civilization", def:"Early Chinese civilization along the Huang He, known for canal and dike systems; traded as far as Mesopotamia; declined around 1900 BCE." },
-          { id:"civ1-f2", term:"Shang Dynasty", def:"Chinese dynasty (c. 1600-1046 BCE) known for advanced bronze metallurgy and oracle bone script." },
-          { id:"civ1-f3", term:"Qin Shi Huang", def:"First Emperor of China; unified the country, standardized writing, and built the Terracotta Army." },
-          { id:"civ1-f4", term:"Han Dynasty", def:"Chinese dynasty that established the Silk Road and made Confucianism the state ideology." },
-          { id:"civ1-f5", term:"Indus Valley Civilization", def:"Early urban civilization featuring the cities of Mohenjo-Daro and Harappa; its script remains undeciphered." },
-          { id:"civ1-f6", term:"Vedic Period", def:"Period in Indian history when the caste system began and the Vedas were written." },
-          { id:"civ1-f7", term:"Maurya Empire", def:"Indian empire founded by Chandragupta Maurya; expanded under Ashoka the Great." },
-          { id:"civ1-f8", term:"Ashoka the Great", def:"Maurya emperor who embraced Buddhism and nonviolence after the brutal Kalinga War." },
-          { id:"civ1-f9", term:"Gupta Empire", def:"Often called the Golden Age of India; developed the decimal system and the concept of zero." },
-          { id:"civ1-f10", term:"Oracle bone script", def:"Early Chinese writing system used by the Shang Dynasty, inscribed on animal bones." }
+          { id:"civ1-f1", term:"Yellow River Valley civilization", def:"Grew along the Huang He, growing millet, wheat, and barley; built elaborate canals and dikes to manage flooding, traded as far as Mesopotamia, and declined around 1900 BCE." },
+          { id:"civ1-f2", term:"Xia Dynasty (c. 2070-1600 BCE)", def:"Legendary first dynasty founded by Yu the Great after he managed the Yellow River's flooding; known through texts like the Bamboo Annals and still debated by historians." },
+          { id:"civ1-f3", term:"Shang Dynasty (c. 1600-1046 BCE)", def:"Founded by King Tang; known for advanced bronze metallurgy, oracle bone script, and a feudal society; notable rulers Wu Ding and the final ruler Di Xin." },
+          { id:"civ1-f4", term:"Western Zhou Dynasty (c. 1046-771 BCE)", def:"Kings Wen, Wu, and Cheng expanded the Zhou state, consolidated feudal power, and established the concept of the Mandate of Heaven." },
+          { id:"civ1-f5", term:"Mandate of Heaven", def:"The Zhou idea that heaven grants a dynasty the right to rule and can withdraw it from unjust rulers." },
+          { id:"civ1-f6", term:"Eastern Zhou Dynasty (c. 770-256 BCE)", def:"Divided into the Spring and Autumn Period (770-476 BCE) and the Warring States Period (476-221 BCE); saw the rise of Confucianism, Taoism, and Legalism." },
+          { id:"civ1-f7", term:"The Analects and the Tao Te Ching", def:"Foundational texts of Confucianism and Taoism, respectively, both produced during the Eastern Zhou period." },
+          { id:"civ1-f8", term:"Qin Dynasty (221-206 BCE)", def:"Qin Shi Huang, the First Emperor, unified China, standardized writing, and created the first Chinese empire; the Terracotta Army was built to protect him in the afterlife." },
+          { id:"civ1-f9", term:"Han Dynasty (206 BCE-220 CE)", def:"Established Silk Road trade, made Confucianism the state ideology, and created the civil service system; Emperor Wu was its greatest ruler and Guangwu founded the Eastern Han." },
+          { id:"civ1-f10", term:"Fall of the Han", def:"The Han collapsed after the Yellow Turban Rebellion, giving way to the Three Kingdoms period (Wei, Shu, and Wu) and then the Jin Dynasty." },
+          { id:"civ1-f11", term:"Indus Valley Civilization (c. 3300-1300 BCE)", def:"Early urban society whose cities, Mohenjo-Daro and Harappa, had grid-like streets and advanced drainage and sewage systems." },
+          { id:"civ1-f12", term:"Indus Valley script", def:"The writing system of the Indus Valley Civilization, which remains undeciphered to this day." },
+          { id:"civ1-f13", term:"Vedic Period (c. 1500-500 BCE)", def:"Saw the writing of the Vedas, India's Iron Age, and the introduction of the caste system, which still persists today." },
+          { id:"civ1-f14", term:"Religions of the Vedic Period", def:"Hinduism, Buddhism, and Jainism began to take shape; Siddhartha Gautama founded Buddhism and Mahavira established Jainism." },
+          { id:"civ1-f15", term:"Maurya Empire (c. 322-185 BCE)", def:"Founded by Chandragupta Maurya and expanded under his grandson Ashoka the Great; traded along the Silk Road." },
+          { id:"civ1-f16", term:"Ashoka the Great", def:"Embraced Buddhist non-violence after the bloody Kalinga War and spread the message of dharma (the wheel of law) on stone pillars across his empire." },
+          { id:"civ1-f17", term:"End of the Maurya Empire", def:"The last ruler, Brihadratha, was assassinated by his general Pushyamitra Shunga, who founded the Shunga Dynasty." },
+          { id:"civ1-f18", term:"Gupta Empire (c. 320-550 CE)", def:"Known as the \"Golden Age of India\"; notable rulers were Chandragupta I, Samudragupta, and Chandragupta II." },
+          { id:"civ1-f19", term:"Gupta achievements", def:"Developed the decimal numeral system and the concept of zero; the Mahabharata and Ramayana were canonized; the Indian Ocean trade network began." },
+          { id:"civ1-f20", term:"Indian caste system (top to bottom)", def:"Brahmins (priests), Kshatriyas (kings, rulers, warriors), Vaisyas (merchants, craftsmen, landowners), Sudras (farm workers, servants), and Dalits (\"untouchables\")." },
+          { id:"civ1-f21", term:"Brahmins", def:"The priestly caste at the top of the Indian caste system." },
+          { id:"civ1-f22", term:"Dalits", def:"The \"untouchables,\" outcastes below the four main castes who did jobs like street sweeping and handling the dead." }
         ],
         quiz: [
-          { id:"civ1-q1", q:"Who unified China, standardized writing, and built the Terracotta Army?", opts:["Confucius","Qin Shi Huang","Emperor Wu","King Tang"], correct:1 },
-          { id:"civ1-q2", q:"Which river valley civilization built the cities of Mohenjo-Daro and Harappa?", opts:["Yellow River Valley","Indus Valley Civilization","Fertile Crescent","Nile Valley"], correct:1 },
-          { id:"civ1-q3", q:"Which Indian emperor embraced Buddhism after the brutal Kalinga War?", opts:["Chandragupta Maurya","Ashoka the Great","Samudragupta","Akbar"], correct:1 },
-          { id:"civ1-q4", q:"Which Chinese dynasty established the Silk Road and made Confucianism the state ideology?", opts:["Shang Dynasty","Qin Dynasty","Han Dynasty","Zhou Dynasty"], correct:2 },
-          { id:"civ1-q5", q:"Which Indian empire is often called the Golden Age of India and developed the concept of zero?", opts:["Maurya Empire","Gupta Empire","Mughal Empire","Vedic Period"], correct:1 },
-          { id:"civ1-q6", q:"The Yellow River Valley Civilization in China declined around what era?", opts:["1900 BCE","500 BCE","221 BCE","1046 BCE"], correct:0 },
-          { id:"civ1-q7", q:"What ancient Chinese script, used by the Shang Dynasty, was inscribed on animal bones?", opts:["Oracle bone script","Linear B","Cuneiform","Hieroglyphics"], correct:0 },
-          { id:"civ1-q8", q:"The caste system was introduced during which period of Indian history?", opts:["Indus Valley period","Vedic Period","Gupta Empire","Maurya Empire"], correct:1 }
+          { id:"civ1-q1", q:"The Yellow River Valley civilization traded as far away as which region?", opts:["Egypt","Mesopotamia","Greece","The Indus Valley"], correct:1 },
+          { id:"civ1-q2", q:"According to legend, who founded the Xia Dynasty after controlling the Yellow River's floods?", opts:["King Tang","Yu the Great","Qin Shi Huang","Emperor Wu"], correct:1 },
+          { id:"civ1-q3", q:"Oracle bone script and advanced bronze metallurgy are associated with which dynasty?", opts:["Xia","Shang","Qin","Han"], correct:1 },
+          { id:"civ1-q4", q:"The concept of the Mandate of Heaven was established during which dynasty?", opts:["Shang","Western Zhou","Qin","Han"], correct:1 },
+          { id:"civ1-q5", q:"The Warring States Period was part of which dynasty?", opts:["Shang","Western Zhou","Eastern Zhou","Qin"], correct:2 },
+          { id:"civ1-q6", q:"Confucianism, Taoism, and Legalism all developed during which period?", opts:["Shang Dynasty","Eastern Zhou Dynasty","Qin Dynasty","Han Dynasty"], correct:1 },
+          { id:"civ1-q7", q:"Who was the First Emperor of a unified China?", opts:["Emperor Wu","Yu the Great","Qin Shi Huang","King Wen"], correct:2 },
+          { id:"civ1-q8", q:"The Terracotta Army was created to protect which ruler in the afterlife?", opts:["Qin Shi Huang","Emperor Wu","Emperor Guangwu","King Tang"], correct:0 },
+          { id:"civ1-q9", q:"Which dynasty established Silk Road trade and made Confucianism the state ideology?", opts:["Qin","Han","Zhou","Shang"], correct:1 },
+          { id:"civ1-q10", q:"The Han Dynasty collapsed following which uprising?", opts:["Boxer Rebellion","Yellow Turban Rebellion","Taiping Rebellion","An Lushan Rebellion"], correct:1 },
+          { id:"civ1-q11", q:"Which three kingdoms followed the fall of the Han Dynasty?", opts:["Qin, Zhou, and Shang","Wei, Shu, and Wu","Sui, Tang, and Song","Xia, Jin, and Han"], correct:1 },
+          { id:"civ1-q12", q:"Mohenjo-Daro and Harappa were major cities of which civilization?", opts:["Yellow River","Indus Valley","Mesopotamia","Gupta"], correct:1 },
+          { id:"civ1-q13", q:"What is notable about the Indus Valley script?", opts:["It was the first alphabet","It remains undeciphered","It was written on oracle bones","It was adopted by the Greeks"], correct:1 },
+          { id:"civ1-q14", q:"The caste system was introduced in India during which period?", opts:["Indus Valley Civilization","Vedic Period","Maurya Empire","Gupta Empire"], correct:1 },
+          { id:"civ1-q15", q:"Who is the historical founder of Buddhism?", opts:["Mahavira","Siddhartha Gautama","Ashoka","Chandragupta"], correct:1 },
+          { id:"civ1-q16", q:"Who established Jainism?", opts:["Siddhartha Gautama","Mahavira","Ashoka","Samudragupta"], correct:1 },
+          { id:"civ1-q17", q:"Who founded the Maurya Empire?", opts:["Ashoka","Chandragupta Maurya","Brihadratha","Chandragupta I"], correct:1 },
+          { id:"civ1-q18", q:"After which war did Ashoka embrace Buddhist principles of non-violence?", opts:["Kalinga War","Punic War","Peloponnesian War","Indus War"], correct:0 },
+          { id:"civ1-q19", q:"The last Maurya ruler was assassinated by his general, who founded which dynasty?", opts:["Gupta","Shunga","Vedic","Harappan"], correct:1 },
+          { id:"civ1-q20", q:"Which empire is known as the \"Golden Age of India\"?", opts:["Maurya","Gupta","Shunga","Mughal"], correct:1 },
+          { id:"civ1-q21", q:"The decimal numeral system and the concept of zero were developed during which empire?", opts:["Maurya","Gupta","Vedic","Indus"], correct:1 },
+          { id:"civ1-q22", q:"In the Indian caste system, which group sits at the top?", opts:["Kshatriyas","Vaisyas","Brahmins","Sudras"], correct:2 },
+          { id:"civ1-q23", q:"In the caste system, kings, rulers, and warriors belong to which caste?", opts:["Brahmins","Kshatriyas","Vaisyas","Sudras"], correct:1 },
+          { id:"civ1-q24", q:"Which group falls below the four main castes and is sometimes called the \"untouchables\"?", opts:["Sudras","Vaisyas","Dalits","Kshatriyas"], correct:2 }
         ]
       },
       {
         id: "civ2", name: "Ancient Africa, Egypt, Greece & Rome", num: "Category 6",
-        desc: "World civilization: Ancient Africa and Egypt, Greece, and Rome.",
+        desc: "Prehistoric and Bronze Age Europe, Greek city-states and Alexander, the Roman Kingdom, Republic, and Empire, and the kingdoms and pharaohs of Egypt.",
         flashcards: [
-          { id:"civ2-f1", term:"Minoan civilization", def:"Bronze Age civilization on Crete known for bull-leaping frescoes and the undeciphered Linear A script." },
-          { id:"civ2-f2", term:"Mycenaean civilization", def:"Bronze Age Greek civilization known for the Lion Gate at Mycenae." },
-          { id:"civ2-f3", term:"Solon", def:"Athenian lawgiver (594 BCE) who reformed the constitution to balance power between rich and poor." },
-          { id:"civ2-f4", term:"Cleisthenes", def:"Athenian leader who introduced greater direct democracy and the practice of ostracism." },
-          { id:"civ2-f5", term:"Leonidas", def:"Spartan king who led 300 soldiers at the Battle of Thermopylae against Persia." },
-          { id:"civ2-f6", term:"Peloponnesian War", def:"Conflict between Athens (Delian League) and Sparta (Peloponnesian League), won by Sparta in 404 BCE." },
-          { id:"civ2-f7", term:"Alexander the Great", def:"Macedonian king who conquered the Persian Empire and founded the city of Alexandria." },
-          { id:"civ2-f8", term:"Twelve Tables", def:"Rome's earliest law code, displayed on copper tablets in 449 BCE." },
-          { id:"civ2-f9", term:"Julius Caesar", def:"Roman general and dictator who crossed the Rubicon and was assassinated on the Ides of March, 44 BCE." },
-          { id:"civ2-f10", term:"Augustus", def:"Formerly Octavian; became the first Roman Emperor and began the Pax Romana." },
-          { id:"civ2-f11", term:"Old Kingdom (Egypt)", def:"Egyptian period known for building the Great Pyramids at Giza; capital at Memphis." },
-          { id:"civ2-f12", term:"New Kingdom (Egypt)", def:"Egyptian period featuring pharaohs Hatshepsut, Thutmose III, Akhenaten, and Tutankhamun; first use of the title pharaoh." },
-          { id:"civ2-f13", term:"Ramesses II", def:"Egyptian pharaoh known for the Battle of Kadesh and the monuments at Abu Simbel." }
+          { id:"civ2-f1", term:"Stone Ages of Europe", def:"Paleolithic (Old Stone Age: stone tools, cave paintings, Venus figurines), Mesolithic (pottery, bows, canoes, early domestication), and Neolithic (farming and settlements)." },
+          { id:"civ2-f2", term:"Chalcolithic (Copper) Age", def:"Brought the first copper tools and weapons; the Varna culture of modern Bulgaria developed gold metallurgy, and Stonehenge was erected." },
+          { id:"civ2-f3", term:"Minoan civilization", def:"A Bronze Age civilization on Crete known for multistory palaces, colorful frescoes, \"bull-leaping,\" and two scripts, Linear A (undeciphered) and Linear B (mostly deciphered)." },
+          { id:"civ2-f4", term:"Palace at Knossos", def:"The best-known Minoan settlement, home of the legendary King Minos and the labyrinth of Greek myth." },
+          { id:"civ2-f5", term:"Mycenaean civilization", def:"A Bronze Age Greek civilization closer to Classical Greece; its chief city, Mycenae, is famous for the Lion Gate at the entrance to its acropolis." },
+          { id:"civ2-f6", term:"Sea Peoples", def:"Mysterious invaders whose attacks, along with drought and natural disasters, helped end the Bronze Age in the Mediterranean world." },
+          { id:"civ2-f7", term:"Start of Classical Greece", def:"Marked by the first Olympic Games in 776 BCE; the poet Homer is believed to have lived in this period." },
+          { id:"civ2-f8", term:"Polis and hoplite", def:"The polis was the Greek city-state; the hoplite was the heavily armed citizen-soldier at the core of Greek armies, fighting in a phalanx." },
+          { id:"civ2-f9", term:"Draco", def:"In 621 BCE replaced Athens' oral law with a harsh written code \u2014 debtors were enslaved and minor crimes drew death \u2014 giving us the word \"draconian.\"" },
+          { id:"civ2-f10", term:"Solon", def:"Athenian archon from 594 BCE called \"the Lawgiver\"; balanced power between rich and poor by ranking citizens into four wealth classes and allowing appeals to an assembly." },
+          { id:"civ2-f11", term:"Cleisthenes", def:"Athenian archon who expanded direct democracy and introduced ostracism, by which a citizen could be expelled from Athens by majority vote." },
+          { id:"civ2-f12", term:"Lycurgus and Sparta", def:"Lycurgus created Sparta's dual monarchy with a council of elders; Sparta trained boys for war from a young age and enslaved the neighboring Messenians as helots." },
+          { id:"civ2-f13", term:"Peloponnesian League", def:"A military alliance led by Sparta that included Corinth, Thebes, and Delphi." },
+          { id:"civ2-f14", term:"First Persian War", def:"Darius I's invasion ended with Persia's defeat by a small Athenian force at the Battle of Marathon in 490 BCE." },
+          { id:"civ2-f15", term:"Second Persian War", def:"Xerxes I's invasion (481-479 BCE) was held back by Athens under Themistocles and by Leonidas's 300 Spartans at the Battle of Thermopylae." },
+          { id:"civ2-f16", term:"Delian League and Pericles", def:"Athens formed the Delian League after the Persian Wars; Pericles expanded democracy and the arts, began the Acropolis and Parthenon, and died in the plague of 429 BCE." },
+          { id:"civ2-f17", term:"Peloponnesian War (431-404 BCE)", def:"Fought between Athens' Delian League and Sparta's Peloponnesian League; Sparta won, leading to the rule of the Thirty Tyrants in Athens." },
+          { id:"civ2-f18", term:"Alexander the Great", def:"Son of Philip II of Macedon; undefeated in battle, he conquered the Persian (Achaemenid) Empire and reached India between 336 and his death in 323 BCE, founding Alexandria in Egypt." },
+          { id:"civ2-f19", term:"Successor kingdoms", def:"After Alexander's death his empire split into the Antigonid Kingdom, the Ptolemaic Kingdom (Egypt), and the Seleucid Empire; this Hellenistic world was later absorbed by Rome." },
+          { id:"civ2-f20", term:"Roman Kingdom (c. 753-509 BCE)", def:"Founded by Romulus and Remus, twins raised by a she-wolf; seven kings ruled until the tyrant Tarquin the Proud was exiled in 509 BCE." },
+          { id:"civ2-f21", term:"Roman Republic government", def:"Two consuls elected by the people, a Senate of patricians serving for life, and tribunes elected by the plebeians who could veto the consuls and Senate." },
+          { id:"civ2-f22", term:"Patricians and plebeians", def:"The two classes of Roman society: wealthy landowning patricians and the poorer plebeians." },
+          { id:"civ2-f23", term:"Cincinnatus", def:"The first Roman dictator, appointed in a crisis during the Aequian War." },
+          { id:"civ2-f24", term:"Twelve Tables (449 BCE)", def:"Rome's first codified laws, displayed on copper tablets covering court procedure, family rights, inheritance, property, injury, and public and sacred law." },
+          { id:"civ2-f25", term:"First Triumvirate", def:"The political alliance of Pompey, Julius Caesar, and Crassus." },
+          { id:"civ2-f26", term:"Cicero", def:"Roman orator and statesman; consul during the Catiline Conspiracy; opposed Caesar and Mark Antony in speeches and was assassinated in 43 BCE on orders of the Second Triumvirate." },
+          { id:"civ2-f27", term:"Julius Caesar", def:"Conquered Gaul, crossed the Rubicon saying \"The die is cast,\" won the civil war to become dictator, and was assassinated on the Ides of March (March 15), 44 BCE (\"Et tu, Brute?\")." },
+          { id:"civ2-f28", term:"Punic Wars", def:"Three wars between Rome and Carthage: Rome won Sicily in the First; Hannibal crossed the Alps and won at Cannae before Scipio Africanus beat him at Zama in the Second; Carthage was destroyed in the Third." },
+          { id:"civ2-f29", term:"Pyrrhic War (280-275 BCE)", def:"Rome defeated Pyrrhus of Epirus at Heraclea and Asculum but at great cost, giving us the term \"Pyrrhic victory.\"" },
+          { id:"civ2-f30", term:"Gallic Wars (58-50 BCE)", def:"Julius Caesar's conquest of the Gallic tribes, ending with the defeat of Vercingetorix at the Siege of Alesia." },
+          { id:"civ2-f31", term:"Second Triumvirate", def:"Octavian, Mark Antony, and Marcus Lepidus, who pursued Caesar's assassins; it collapsed into rivalry between Octavian and Antony." },
+          { id:"civ2-f32", term:"Battle of Actium (31 BCE)", def:"Octavian defeated Mark Antony and Cleopatra; after a final defeat at Alexandria in 30 BCE, Antony and Cleopatra died by suicide." },
+          { id:"civ2-f33", term:"Augustus and the Pax Romana", def:"Octavian took the title Augustus, became the first Roman emperor (27 BCE-14 CE), and began a period of relative peace known as the Pax Romana." },
+          { id:"civ2-f34", term:"Battle of Teutoburg Forest (9 CE)", def:"Germanic tribes destroyed three legions under Varus; Augustus reportedly cried, \"Quinctilius Varus, give me back my legions!\"" },
+          { id:"civ2-f35", term:"Caligula and Claudius", def:"Caligula (\"little boot\") tried to make his horse Incitatus a consul and was assassinated; Claudius, found hiding behind a curtain afterward, went on to conquer Britain." },
+          { id:"civ2-f36", term:"Nero", def:"Last emperor of the Julio-Claudian dynasty; known for the Great Fire of Rome and persecution of Christians." },
+          { id:"civ2-f37", term:"Vespasian and Titus", def:"Vespasian began construction of the Colosseum; his son Titus completed it." },
+          { id:"civ2-f38", term:"Trajan and Hadrian", def:"Trajan expanded the empire to its greatest extent (98-117 CE); Hadrian built Hadrian's Wall in Britain (117-138 CE)." },
+          { id:"civ2-f39", term:"Marcus Aurelius", def:"Stoic philosopher-emperor who wrote Meditations and fought the Marcomannic Wars; the last of the Five Good Emperors (161-180 CE)." },
+          { id:"civ2-f40", term:"Commodus and Caracalla", def:"Commodus dressed as Hercules and fought as a gladiator; Caracalla granted citizenship to all free inhabitants and built huge public baths." },
+          { id:"civ2-f41", term:"Diocletian", def:"Split the Roman Empire into Eastern and Western halves (284-305 CE)." },
+          { id:"civ2-f42", term:"Constantine the Great", def:"Legalized Christianity after seeing a Chi Rho vision before the Battle of Milvian Bridge (312 CE), founded Constantinople, and called the Council of Nicaea in 325, which produced the Nicene Creed." },
+          { id:"civ2-f43", term:"Theodosius the Great", def:"Made Christianity the official state religion of the Roman Empire (379-395 CE)." },
+          { id:"civ2-f44", term:"Fall of the Western Empire", def:"Rome was sacked by the Visigoths under Alaric (410) and the Vandals under Genseric (455); the last Western emperor, Romulus Augustulus, was deposed by Odoacer in 476." },
+          { id:"civ2-f45", term:"Battle of the Catalaunian Plains (451 CE)", def:"Roman and barbarian forces halted Attila the Hun's invasion of Gaul." },
+          { id:"civ2-f46", term:"Old Kingdom of Egypt (c. 2686-2181 BCE)", def:"Era of the Great Pyramids at Giza and a strong centralized state, with its capital at Memphis." },
+          { id:"civ2-f47", term:"Middle Kingdom of Egypt (c. 2055-1650 BCE)", def:"Reestablished central authority and expanded trade; the capital shifted to Thebes; followed by the Hyksos invasion of the Second Intermediate Period." },
+          { id:"civ2-f48", term:"New Kingdom of Egypt (c. 1550-1070 BCE)", def:"Egypt's imperial age and the first use of the title \"pharaoh\"; began when Ahmose the Great drove out the Hyksos and founded the 18th Dynasty." },
+          { id:"civ2-f49", term:"Hatshepsut", def:"One of the few female pharaohs (1479-1458 BCE); focused on trade expeditions and built the temple at Deir el-Bahri." },
+          { id:"civ2-f50", term:"Thutmose III", def:"The \"Napoleon of Egypt\"; expanded the empire through campaigns in Canaan and Nubia, won at Megiddo, and built at the Great Temple of Karnak." },
+          { id:"civ2-f51", term:"Akhenaten", def:"Formerly Amenhotep IV; made the sun god Aten the state god, moved the capital to Amarna, and changed Egyptian religious and artistic conventions." },
+          { id:"civ2-f52", term:"Tutankhamun", def:"Took the throne as a boy and reversed Akhenaten's religious reforms; famous for his intact tomb in the Valley of the Kings." },
+          { id:"civ2-f53", term:"Ramesses II (Ramses the Great)", def:"Ruled 1279-1213 BCE; built Abu Simbel, fought the Hittites at the Battle of Kadesh and signed the first known peace treaty; called Ozymandias in Greek texts." },
+          { id:"civ2-f54", term:"Merneptah", def:"Ramesses II's successor; fought the Sea Peoples and left the earliest known reference to Israel." },
+          { id:"civ2-f55", term:"Late and Greco-Roman Egypt", def:"Egypt fell under Persian and then Greek rule; after Alexander's conquest the Ptolemaic dynasty ruled until Cleopatra VII's alliances with Caesar and Mark Antony ended in Roman annexation." }
         ],
         quiz: [
-          { id:"civ2-q1", q:"Which Spartan king led 300 soldiers at the Battle of Thermopylae?", opts:["Leonidas","Xerxes","Themistocles","Pericles"], correct:0 },
-          { id:"civ2-q2", q:"Who became the first Roman Emperor after defeating Mark Antony?", opts:["Julius Caesar","Augustus (Octavian)","Nero","Constantine"], correct:1 },
-          { id:"civ2-q3", q:"Which Egyptian pharaoh is famous for his intact tomb found in the Valley of the Kings?", opts:["Ramesses II","Akhenaten","Tutankhamun","Hatshepsut"], correct:2 },
-          { id:"civ2-q4", q:"The Minoan civilization, known for bull-leaping frescoes, was centered on which island?", opts:["Sicily","Crete","Cyprus","Rhodes"], correct:1 },
-          { id:"civ2-q5", q:"Which war ended in 404 BCE with Sparta defeating Athens and the Delian League?", opts:["Persian War","Peloponnesian War","Punic War","Trojan War"], correct:1 },
-          { id:"civ2-q6", q:"Who conquered the Persian Empire and founded the city of Alexandria in Egypt?", opts:["Philip II of Macedon","Alexander the Great","Darius III","Ptolemy I"], correct:1 },
-          { id:"civ2-q7", q:"What Roman law code, displayed on copper tablets in 449 BCE, laid out Rome's early laws?", opts:["The Justinian Code","The Twelve Tables","The Magna Carta","The Codex Romanus"], correct:1 },
-          { id:"civ2-q8", q:"Which Egyptian kingdom built the Great Pyramids at Giza?", opts:["Old Kingdom","Middle Kingdom","New Kingdom","Late Period"], correct:0 },
-          { id:"civ2-q9", q:"Julius Caesar was assassinated on what famous date?", opts:["The Ides of March","The Kalends of January","The Nones of May","The Ides of September"], correct:0 },
-          { id:"civ2-q10", q:"Which pharaoh fought the Battle of Kadesh and built the monuments at Abu Simbel?", opts:["Thutmose III","Ramesses II","Akhenaten","Merneptah"], correct:1 }
+          { id:"civ2-q1", q:"Cave paintings, stone tools, and \"Venus figurines\" are characteristic of which era?", opts:["Neolithic","Paleolithic","Bronze Age","Iron Age"], correct:1 },
+          { id:"civ2-q2", q:"The transition from hunting and gathering to farming and settlements occurred in which age?", opts:["Paleolithic","Mesolithic","Neolithic","Chalcolithic"], correct:2 },
+          { id:"civ2-q3", q:"The Minoan civilization was centered on which island?", opts:["Sicily","Crete","Cyprus","Rhodes"], correct:1 },
+          { id:"civ2-q4", q:"Which Minoan script has never been deciphered?", opts:["Linear A","Linear B","Cuneiform","Hieroglyphics"], correct:0 },
+          { id:"civ2-q5", q:"The Lion Gate guards the acropolis of which Bronze Age Greek city?", opts:["Knossos","Athens","Mycenae","Sparta"], correct:2 },
+          { id:"civ2-q6", q:"The first Olympic Games, marking the start of Classical Greece, were held in what year?", opts:["1000 BCE","776 BCE","594 BCE","490 BCE"], correct:1 },
+          { id:"civ2-q7", q:"Whose harsh written law code for Athens gave us the word \"draconian\"?", opts:["Solon","Draco","Cleisthenes","Pericles"], correct:1 },
+          { id:"civ2-q8", q:"Which Athenian archon introduced ostracism?", opts:["Draco","Solon","Cleisthenes","Themistocles"], correct:2 },
+          { id:"civ2-q9", q:"In Sparta, the enslaved people of neighboring Messenia were called:", opts:["Hoplites","Helots","Metics","Ephors"], correct:1 },
+          { id:"civ2-q10", q:"A small Athenian force defeated Darius I's Persians at which battle?", opts:["Thermopylae","Salamis","Marathon","Plataea"], correct:2 },
+          { id:"civ2-q11", q:"Leonidas and 300 Spartans held off the Persians at which battle?", opts:["Marathon","Thermopylae","Actium","Cannae"], correct:1 },
+          { id:"civ2-q12", q:"Who began construction of the Parthenon and died in the plague of Athens in 429 BCE?", opts:["Solon","Themistocles","Pericles","Cleisthenes"], correct:2 },
+          { id:"civ2-q13", q:"Who won the Peloponnesian War?", opts:["Athens","Sparta","Persia","Macedon"], correct:1 },
+          { id:"civ2-q14", q:"Alexander the Great was the son of which king?", opts:["Darius I","Philip II of Macedon","Ptolemy I","Xerxes I"], correct:1 },
+          { id:"civ2-q15", q:"According to legend, Rome was founded by twins raised by what animal?", opts:["A bear","A she-wolf","An eagle","A lioness"], correct:1 },
+          { id:"civ2-q16", q:"Who was the last king of Rome, exiled in 509 BCE?", opts:["Romulus","Numa Pompilius","Tarquin the Proud","Servius Tullius"], correct:2 },
+          { id:"civ2-q17", q:"In the Roman Republic, which officials elected by the plebeians could veto the consuls and Senate?", opts:["Censors","Praetors","Tribunes","Dictators"], correct:2 },
+          { id:"civ2-q18", q:"Rome's first codified laws, displayed on copper tablets in 449 BCE, were the:", opts:["Twelve Tables","Justinian Code","Pax Romana","Senate Decrees"], correct:0 },
+          { id:"civ2-q19", q:"The First Triumvirate consisted of Julius Caesar, Pompey, and whom?", opts:["Cicero","Crassus","Mark Antony","Octavian"], correct:1 },
+          { id:"civ2-q20", q:"What did Julius Caesar reportedly say upon crossing the Rubicon?", opts:["\"Et tu, Brute?\"","\"The die is cast\"","\"Veni, vidi, vici\"","\"Give me back my legions\""], correct:1 },
+          { id:"civ2-q21", q:"On what date was Julius Caesar assassinated?", opts:["January 1, 49 BCE","March 15, 44 BCE","September 2, 31 BCE","August 19, 14 CE"], correct:1 },
+          { id:"civ2-q22", q:"Which Carthaginian general crossed the Alps and defeated Rome at Cannae?", opts:["Hamilcar","Hannibal","Hasdrubal","Scipio"], correct:1 },
+          { id:"civ2-q23", q:"Who defeated Hannibal at the Battle of Zama, ending the Second Punic War?", opts:["Pompey","Julius Caesar","Scipio Africanus","Cincinnatus"], correct:2 },
+          { id:"civ2-q24", q:"The Gallic leader Vercingetorix surrendered to Caesar after which siege?", opts:["Gergovia","Alesia","Carthage","Actium"], correct:1 },
+          { id:"civ2-q25", q:"Octavian defeated Mark Antony and Cleopatra at which battle in 31 BCE?", opts:["Actium","Zama","Philippi","Milvian Bridge"], correct:0 },
+          { id:"civ2-q26", q:"Who became the first Roman emperor and began the Pax Romana?", opts:["Julius Caesar","Augustus","Tiberius","Nero"], correct:1 },
+          { id:"civ2-q27", q:"Which emperor tried to make his horse, Incitatus, a consul?", opts:["Nero","Caligula","Commodus","Claudius"], correct:1 },
+          { id:"civ2-q28", q:"Under which emperor did the Roman Empire reach its greatest territorial extent?", opts:["Augustus","Hadrian","Trajan","Constantine"], correct:2 },
+          { id:"civ2-q29", q:"Which Stoic philosopher-emperor wrote Meditations?", opts:["Hadrian","Marcus Aurelius","Antoninus Pius","Diocletian"], correct:1 },
+          { id:"civ2-q30", q:"Which emperor split the Roman Empire into Eastern and Western halves?", opts:["Constantine","Diocletian","Theodosius","Trajan"], correct:1 },
+          { id:"civ2-q31", q:"Constantine legalized Christianity and called which council in 325 CE?", opts:["Council of Trent","Council of Nicaea","Council of Chalcedon","Council of Ephesus"], correct:1 },
+          { id:"civ2-q32", q:"Who deposed Romulus Augustulus, the last Western Roman emperor, in 476 CE?", opts:["Alaric","Genseric","Attila","Odoacer"], correct:3 },
+          { id:"civ2-q33", q:"The Great Pyramids at Giza were built during which period of Egyptian history?", opts:["Old Kingdom","Middle Kingdom","New Kingdom","Late Period"], correct:0 },
+          { id:"civ2-q34", q:"Which foreign invaders ruled parts of Egypt during the Second Intermediate Period?", opts:["Persians","Hyksos","Assyrians","Greeks"], correct:1 },
+          { id:"civ2-q35", q:"Which pharaoh is nicknamed the \"Napoleon of Egypt\"?", opts:["Ramesses II","Thutmose III","Ahmose","Akhenaten"], correct:1 },
+          { id:"civ2-q36", q:"Which pharaoh made the sun god Aten the state god and moved the capital to Amarna?", opts:["Tutankhamun","Hatshepsut","Akhenaten","Merneptah"], correct:2 },
+          { id:"civ2-q37", q:"Ramesses II fought the Hittites at which battle, leading to the first known peace treaty?", opts:["Megiddo","Kadesh","Thebes","Memphis"], correct:1 },
+          { id:"civ2-q38", q:"Which pharaoh left the earliest known reference to Israel?", opts:["Ramesses II","Merneptah","Thutmose III","Amenhotep III"], correct:1 }
         ]
       },
       {
         id: "civ3", name: "The Middle Ages", num: "Category 7",
-        desc: "Song, Sui, and Tang China, Islamic Empires, the Americas, African civilizations, and Medieval Europe.",
+        desc: "The fall of Rome, the Byzantine Empire and its emperors and battles, and Anglo-Saxon and Norman England.",
         flashcards: [
-          { id:"civ3-f1", term:"Justinian I", def:"Byzantine emperor known for codifying Roman law (the Justinian Code) and reconquering North Africa and Italy." },
-          { id:"civ3-f2", term:"Hagia Sophia", def:"Grand cathedral built in Constantinople under Justinian's rule." },
-          { id:"civ3-f3", term:"Battle of Manzikert (1071)", def:"Byzantine defeat by the Seljuk Turks that weakened control of Anatolia." },
-          { id:"civ3-f4", term:"Siege of Constantinople (1453)", def:"Final battle in which the Ottoman Empire, led by Mehmed the Conqueror, ended the Byzantine Empire." },
-          { id:"civ3-f5", term:"Alfred the Great", def:"English king who held back Viking invasions and unified England, creating a legal code." },
-          { id:"civ3-f6", term:"William the Conqueror", def:"Duke of Normandy who defeated King Harold II at the Battle of Hastings in 1066, beginning Norman rule." },
-          { id:"civ3-f7", term:"Danelaw", def:"Region of England placed under Danish (Viking) control." },
-          { id:"civ3-f8", term:"Anglo-Saxon England", def:"Period (c. 410-1066) when Germanic peoples established kingdoms in England after Roman withdrawal." }
+          { id:"civ3-f1", term:"Fall of the Western Roman Empire (476 CE)", def:"The Germanic chieftain Odoacer deposed the last emperor, Romulus Augustulus, and sent the imperial regalia to the Eastern emperor Zeno." },
+          { id:"civ3-f2", term:"Byzantine Empire", def:"The Eastern Roman Empire, centered on Constantinople, which outlived the Western Empire by nearly a thousand years." },
+          { id:"civ3-f3", term:"Justinian I (527-565)", def:"Codified Roman law in the Justinian Code and launched campaigns that reconquered North Africa and Italy." },
+          { id:"civ3-f4", term:"Corpus Juris Civilis", def:"Another name for the Justinian Code, the codification of Roman law that became the foundation of many modern legal systems." },
+          { id:"civ3-f5", term:"Plague of Justinian (541-549)", def:"The first significant plague pandemic; it killed millions, perhaps a quarter of the Eastern Mediterranean's population." },
+          { id:"civ3-f6", term:"Theodora", def:"Justinian's wife and a powerful empress who played a crucial role in government and championed women's rights and marginalized groups." },
+          { id:"civ3-f7", term:"Heraclius (610-641)", def:"Successfully defended the empire against Persia and made Greek the official language of the Byzantine Empire." },
+          { id:"civ3-f8", term:"Basil II (976-1025)", def:"Brought the Byzantine Empire to its territorial peak, including the recovery of Bulgaria." },
+          { id:"civ3-f9", term:"Hagia Sophia", def:"The great church built in Constantinople under Justinian, one of the Byzantine Empire's greatest architectural achievements." },
+          { id:"civ3-f10", term:"Battle of Yarmouk (636)", def:"A major Byzantine defeat by Arab Muslim forces that cost the empire much of the Levant and opened the way for the Arab conquests." },
+          { id:"civ3-f11", term:"Battle of Manzikert (1071)", def:"A decisive defeat by the Seljuk Turks that weakened Byzantine control of Anatolia and contributed to the empire's decline." },
+          { id:"civ3-f12", term:"Siege of Constantinople (1453)", def:"The Ottoman Empire under Sultan Mehmed the Conqueror captured the city, ending the Byzantine Empire; Constantine XI was its final emperor." },
+          { id:"civ3-f13", term:"Anglo-Saxon England (c. 410-1066)", def:"After Roman control faded, Anglo-Saxon peoples settled Britain and formed kingdoms including Essex, Sussex, Wessex, and Kent." },
+          { id:"civ3-f14", term:"Augustine of Canterbury", def:"Led the Gregorian mission to Kent in 597, introducing Christianity to Anglo-Saxon England." },
+          { id:"civ3-f15", term:"Viking raids on Britain", def:"Began in the late 8th century with attacks on coastal towns for loot." },
+          { id:"civ3-f16", term:"Great Heathen Army (865-878)", def:"A large Viking force that pushed deep into Britain and established the Danelaw, the region under Danish control." },
+          { id:"civ3-f17", term:"Alfred the Great", def:"The English king who held back the Viking advance, unified England, and created a legal code." },
+          { id:"civ3-f18", term:"Battle of Hastings (1066)", def:"William the Conqueror, Duke of Normandy, defeated King Harold II, beginning Norman rule in England." }
         ],
         quiz: [
-          { id:"civ3-q1", q:"Who defeated King Harold II at the Battle of Hastings in 1066?", opts:["William the Conqueror","Alfred the Great","Canute","Edward the Confessor"], correct:0 },
-          { id:"civ3-q2", q:"Which Byzantine emperor is known for codifying Roman law into the Justinian Code?", opts:["Heraclius","Justinian I","Basil II","Constantine"], correct:1 },
-          { id:"civ3-q3", q:"What 1453 battle marked the final end of the Byzantine Empire?", opts:["Battle of Manzikert","Battle of Yarmouk","Siege of Constantinople","Battle of Hastings"], correct:2 },
-          { id:"civ3-q4", q:"Which English king successfully held back Viking invasions and unified much of England?", opts:["Alfred the Great","William the Conqueror","Harold II","Edward I"], correct:0 },
-          { id:"civ3-q5", q:"What magnificent building was constructed in Constantinople under Justinian's rule?", opts:["The Colosseum","Hagia Sophia","Notre Dame","The Parthenon"], correct:1 },
-          { id:"civ3-q6", q:"The Battle of Manzikert (1071) weakened Byzantine control over which region?", opts:["The Balkans","Anatolia","Egypt","Italy"], correct:1 },
-          { id:"civ3-q7", q:"What was the name for the region of England placed under Danish Viking control?", opts:["Wessex","Danelaw","Mercia","Northumbria"], correct:1 },
-          { id:"civ3-q8", q:"Which empire captured Constantinople in 1453 under Sultan Mehmed the Conqueror?", opts:["The Mongol Empire","The Ottoman Empire","The Safavid Empire","The Holy Roman Empire"], correct:1 }
+          { id:"civ3-q1", q:"Who deposed the last Western Roman emperor in 476 CE?", opts:["Attila","Alaric","Odoacer","Zeno"], correct:2 },
+          { id:"civ3-q2", q:"After deposing Romulus Augustulus, Odoacer sent the imperial regalia to which Eastern emperor?", opts:["Justinian","Zeno","Heraclius","Basil II"], correct:1 },
+          { id:"civ3-q3", q:"Which Byzantine emperor codified Roman law in the Corpus Juris Civilis?", opts:["Heraclius","Basil II","Justinian I","Constantine XI"], correct:2 },
+          { id:"civ3-q4", q:"Justinian's armies reconquered North Africa and which other territory?", opts:["Gaul","Italy","Spain","Britain"], correct:1 },
+          { id:"civ3-q5", q:"Who was the powerful empress and wife of Justinian?", opts:["Irene","Theodora","Zoe","Helena"], correct:1 },
+          { id:"civ3-q6", q:"Which emperor made Greek the official language of the Byzantine Empire?", opts:["Justinian I","Heraclius","Basil II","Theodosius"], correct:1 },
+          { id:"civ3-q7", q:"Under which emperor did the Byzantine Empire reach its greatest territorial extent?", opts:["Justinian I","Heraclius","Basil II","Constantine XI"], correct:2 },
+          { id:"civ3-q8", q:"The Hagia Sophia was built in which city?", opts:["Rome","Athens","Constantinople","Alexandria"], correct:2 },
+          { id:"civ3-q9", q:"At the Battle of Yarmouk in 636, the Byzantines were defeated by which force?", opts:["Seljuk Turks","Arab Muslims","Ottoman Turks","Persians"], correct:1 },
+          { id:"civ3-q10", q:"The Battle of Manzikert in 1071 was a Byzantine defeat at the hands of the:", opts:["Arab Muslims","Seljuk Turks","Ottomans","Bulgarians"], correct:1 },
+          { id:"civ3-q11", q:"Which empire captured Constantinople in 1453 under Sultan Mehmed the Conqueror?", opts:["The Mongol Empire","The Ottoman Empire","The Safavid Empire","The Holy Roman Empire"], correct:1 },
+          { id:"civ3-q12", q:"Who was the final emperor of the Byzantine Empire?", opts:["Justinian II","Basil II","Constantine XI","Heraclius"], correct:2 },
+          { id:"civ3-q13", q:"Which of these was an Anglo-Saxon kingdom in Britain?", opts:["Normandy","Wessex","Burgundy","Aquitaine"], correct:1 },
+          { id:"civ3-q14", q:"Who led the Gregorian mission that introduced Christianity to Kent in 597?", opts:["Augustine of Hippo","Augustine of Canterbury","Saint Patrick","Alfred the Great"], correct:1 },
+          { id:"civ3-q15", q:"What was the name for the region of England placed under Danish Viking control?", opts:["Wessex","Danelaw","Mercia","Northumbria"], correct:1 },
+          { id:"civ3-q16", q:"Which English king held back the Vikings, unified England, and created a legal code?", opts:["Harold II","Alfred the Great","William the Conqueror","Edward the Confessor"], correct:1 },
+          { id:"civ3-q17", q:"At the Battle of Hastings in 1066, William the Conqueror defeated which king?", opts:["Alfred the Great","Harold II","Edward the Confessor","Canute"], correct:1 },
+          { id:"civ3-q18", q:"William the Conqueror was the Duke of which region before invading England?", opts:["Brittany","Normandy","Flanders","Anjou"], correct:1 }
         ]
       }
     ]
-  },
+  }
+,
   {
     id: "science",
     name: "Science",
@@ -1575,6 +1930,53 @@ const SUBJECTS = [
   }
 ];
 
+
+/* ============================= SCHEDULE =============================
+   Westport Academic Team 2026-27 schedule, generated from the team's
+   Academic_Team_Events spreadsheet plus KAAC Governor's Cup dates.
+   Dates are YYYY-MM-DD; type is one of qr | ca | sps | comp | bye | other;
+   key:true highlights the big tournaments. Update by editing this list.
+==================================================================== */
+const SCHEDULE_SEASON = "2026-27 Season";
+const PRACTICE_NOTE = "There is academic teams practice every Monday from 3:30-4:30 in room 203";
+const SCHEDULE = [
+  {"date": "2026-10-07", "title": "QR Week 1 vs Meyzeek", "type": "qr", "time": "4:00 PM", "location": "Westport", "league": "JCPS", "qrTeams": ["Varsity"], "teams": "QRV"},
+  {"date": "2026-10-08", "title": "SPS Competition 1", "type": "sps", "time": "3:40 PM", "location": "Westport", "league": "JCPS", "teams": "SPS"},
+  {"date": "2026-10-14", "title": "QR Week 2 vs Noe", "type": "qr", "time": "4:00 PM", "location": "Westport", "league": "JCPS", "qrTeams": ["JV", "Varsity"], "teams": "QRJV, QRV"},
+  {"date": "2026-10-20", "title": "Preseason content assessment", "type": "ca", "time": "3:40 PM", "location": "Westport", "league": "KAAC", "teams": "CA"},
+  {"date": "2026-10-21", "title": "QR Week 3 vs Crosby", "type": "qr", "time": "4:00 PM", "location": "Crosby", "league": "JCPS", "qrTeams": ["6th", "Varsity"], "teams": "QR6, QRV"},
+  {"date": "2026-10-22", "title": "SPS Competition 2", "type": "sps", "time": "3:40 PM", "location": "Westport", "league": "JCPS", "teams": "SPS"},
+  {"date": "2026-10-28", "title": "QR Week 4 vs Carrithers", "type": "qr", "time": "4:00 PM", "location": "Carrithers", "league": "JCPS", "qrTeams": ["JV", "Varsity"], "teams": "QRJV, QRV"},
+  {"date": "2026-11-04", "title": "Quick Recall Week 5 — Bye week", "type": "bye"},
+  {"date": "2026-11-05", "title": "SPS Competition 3", "type": "sps", "time": "3:40 PM", "location": "Westport", "league": "JCPS", "teams": "SPS"},
+  {"date": "2026-11-11", "title": "QR Week 6 vs Highland", "type": "qr", "time": "4:00 PM", "location": "Westport", "league": "JCPS", "qrTeams": ["JV", "Varsity"], "teams": "QRJV, QRV"},
+  {"date": "2026-11-18", "title": "QR Week 7 vs Kammerer", "type": "qr", "time": "4:00 PM", "location": "Kammerer", "league": "JCPS", "qrTeams": ["6th", "Varsity"], "teams": "QR6, QRV"},
+  {"date": "2026-12-01", "title": "6th Grade Showcase Composition", "type": "comp", "time": "4:00 PM", "league": "KAAC", "teams": "Writing 6th grade"},
+  {"date": "2026-12-02", "title": "JCPS Content Assessment", "type": "ca", "time": "3:40 PM", "location": "Westport", "league": "JCPS", "teams": "All grades CA"},
+  {"date": "2026-12-05", "title": "6th Grade Showcase Tournament", "type": "qr", "time": "TBD: 8am-3pm", "league": "KAAC", "qrTeams": ["6th"], "teams": "CA, QR 6th grade only"},
+  {"date": "2026-12-09", "title": "SLAMS", "type": "other", "league": "KAAC", "teams": "All grades"},
+  {"date": "2026-12-16", "title": "JCPS League QR tournament", "type": "qr", "time": "4:00 PM", "league": "JCPS", "qrTeams": ["Varsity"], "teams": "QRV", "key": true},
+  {"date": "2027-01-12", "title": "KAAC Gov. Cup SPS/Comp District", "type": "sps", "league": "KAAC", "teams": "SPS, Writing all grades"},
+  {"date": "2027-01-16", "title": "KAAC Gov. Cup District Tournament", "type": "qr", "league": "KAAC", "qrTeams": ["Varsity"], "teams": "CA, QRV", "key": true},
+  {"date": "2027-02-08", "title": "KAAC Gov. Cup SPS/Comp Regional", "type": "sps", "league": "KAAC", "teams": "SPS, Writing all grades"},
+  {"date": "2027-02-13", "title": "KAAC Gov. Cup QR Regional Tournament", "type": "qr", "league": "KAAC", "qrTeams": ["Varsity"], "teams": "CA, QRV", "key": true},
+  {"date": "2027-03-10", "title": "KAAC General Knowledge", "type": "other", "league": "KAAC", "teams": "All Grades"},
+  {"date": "2027-03-19", "title": "KAAC State Tournament", "type": "qr", "location": "Galt House", "league": "KAAC", "qrTeams": ["Varsity"], "teams": "All teams", "key": true, "endDate": "2027-03-22"}
+];
+
+function todayISO() {
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
+}
+function parseDay(iso) { const [y,m,d] = iso.split("-").map(Number); return new Date(y, m-1, d); }
+function daysBetween(aISO, bISO) {
+  return Math.round((parseDay(bISO) - parseDay(aISO)) / 86400000);
+}
+function fmtDay(iso) {
+  return parseDay(iso).toLocaleDateString(undefined, { weekday:"short", month:"long", day:"numeric" });
+}
+function eventIsPast(ev) { return daysBetween(todayISO(), ev.endDate || ev.date) < 0; }
+
 /* ============================= STATE ============================= */
 let progress = null;
 let view = { screen: "home" };   // screen: home | category | flashcards | quiz
@@ -1593,12 +1995,34 @@ function defaultProgress() {
   return p;
 }
 
-// Progress is tracked for the current visit only and resets on reload.
+// Progress is saved on this device (localStorage) so the app can keep track of
+// which questions have never been asked yet, even across visits.
+const STORAGE_KEY = "wms-quick-recall-progress-v1";
+
 function loadProgress() {
   progress = defaultProgress();
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    // Merge: keep saved state only for items that still exist in the content.
+    Object.keys(progress.flashcards).forEach(id => {
+      if (saved.flashcards && saved.flashcards[id]) progress.flashcards[id] = saved.flashcards[id];
+    });
+    Object.keys(progress.quiz).forEach(id => {
+      if (saved.quiz && saved.quiz[id]) progress.quiz[id] = saved.quiz[id];
+    });
+  } catch (e) { /* storage unavailable or corrupt — start fresh */ }
 }
 
-function saveProgress() { /* no-op for now — nothing is persisted */ }
+function saveProgress() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); } catch (e) { /* ignore */ }
+}
+
+function clearProgress() {
+  progress = defaultProgress();
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+}
 
 /* ============================= HELPERS ============================= */
 function shuffle(arr) {
@@ -1615,10 +2039,11 @@ function categoryStats(cat) {
   const knownF = cat.flashcards.filter(f => progress.flashcards[f.id] === "known").length;
   const totalQ = cat.quiz.length;
   const correctQ = cat.quiz.filter(q => progress.quiz[q.id] && progress.quiz[q.id].lastCorrect).length;
+  const askedQ = cat.quiz.filter(q => progress.quiz[q.id] && progress.quiz[q.id].attempts > 0).length;
   const total = totalF + totalQ;
   const mastered = knownF + correctQ;
   const pct = total ? Math.round((mastered / total) * 100) : 0;
-  return { totalF, knownF, totalQ, correctQ, pct };
+  return { totalF, knownF, totalQ, correctQ, askedQ, pct };
 }
 
 function overallStats(subject) {
@@ -1653,17 +2078,15 @@ function logoMark() {
 }
 
 function render() {
+  if (view.screen === "schedule") return renderSchedule();
   if (view.screen === "home") return renderHome();
   if (view.screen === "category") return renderCategory();
   if (view.screen === "flashcards") return renderFlashcards();
   if (view.screen === "quiz") return renderQuiz();
 }
 
-function renderHome() {
-  if (!findSubject(currentSubjectId)) currentSubjectId = SUBJECTS[0].id;
-  const subject = findSubject(currentSubjectId);
-  const stats = overallStats(subject);
-  app.innerHTML = `
+function mastheadHTML() {
+  return `
     <div class="masthead">
       ${logoMark()}
       <div>
@@ -1671,6 +2094,98 @@ function renderHome() {
         <p><b>Westport Warhawks</b> &middot; KAAC Governors Cup study companion</p>
       </div>
     </div>
+    <div class="nav-row">
+      <button class="nav-tab ${view.screen === "schedule" ? "" : "active"}" id="nav-study">Study</button>
+      <button class="nav-tab ${view.screen === "schedule" ? "active" : ""}" id="nav-schedule">Schedule</button>
+    </div>`;
+}
+function wireNav() {
+  document.getElementById("nav-study").addEventListener("click", () => { view = { screen: "home" }; render(); });
+  document.getElementById("nav-schedule").addEventListener("click", () => { view = { screen: "schedule" }; render(); });
+}
+
+function renderSchedule() {
+  const today = todayISO();
+  const upcoming = SCHEDULE.filter(e => !eventIsPast(e));
+  const past = SCHEDULE.filter(eventIsPast);
+  const next = upcoming[0];
+
+  const whereText = ev => {
+    if (!ev.location) return "";
+    return ev.location === "Westport" ? "Westport (home)" : "at " + ev.location;
+  };
+  const detailText = ev => [ev.time, whereText(ev)].filter(Boolean).join(" \u00b7 ");
+  const teamsText = ev => {
+    const t = (ev.teams || "").trim();
+    if (/all/i.test(t)) return t;                                  // "All teams", "All grades CA"
+    if (ev.qrTeams && ev.qrTeams.length) return "Quick Recall: " + ev.qrTeams.join(", ");
+    return t.length > 4 ? t : "";                                  // hide bare codes like "SPS", "CA"
+  };
+  const BADGES = { qr:["qr","Quick Recall"], ca:["ca","Content Assessment"], sps:["sps","Strategic Problem Solving"],
+                   comp:["comp","Composition"], bye:["bye","Bye week"], other:["other","Team event"] };
+
+  let nextHTML = "";
+  if (next) {
+    const n = daysBetween(today, next.date);
+    const count = n < 0 ? "Happening now" : n === 0 ? "Today" : n === 1 ? "Tomorrow" : `${n} days`;
+    const meta = [fmtDay(next.date) + (next.endDate ? " \u2013 " + fmtDay(next.endDate) : ""), detailText(next), teamsText(next)].filter(Boolean).join(" \u00b7 ");
+    nextHTML = `
+      <div class="next-up">
+        <div class="kicker">Next up</div>
+        <div class="count">${count}</div>
+        <div class="ev">${next.title}</div>
+        <div class="meta">${meta}</div>
+      </div>`;
+  }
+
+  const practiceHTML = `
+    <div class="practice">
+      <div class="ico">M</div>
+      <div>
+        <div class="t">Practice every Monday, 3:30\u20134:30 PM</div>
+        <div class="s">Room 203 \u00b7 ${SCHEDULE_SEASON}</div>
+      </div>
+    </div>`;
+
+  const row = ev => {
+    const d = parseDay(ev.date);
+    const [cls, label] = BADGES[ev.type] || BADGES.other;
+    const detail = detailText(ev);
+    const teams = teamsText(ev);
+    return `
+      <div class="event ${ev.key ? "key" : ""} ${eventIsPast(ev) ? "done" : ""}">
+        <div class="date">
+          <div class="m">${d.toLocaleDateString(undefined,{month:"short"})}</div>
+          <div class="d">${d.getDate()}${ev.endDate ? "+" : ""}</div>
+        </div>
+        <div class="body">
+          <div class="title">${ev.title}</div>
+          ${detail ? `<div class="detail">${detail}</div>` : ""}
+          ${teams ? `<div class="teams">${teams}</div>` : ""}
+          <span class="badge ${cls}">${label}</span>${ev.league ? ` <span class="badge other">${ev.league}</span>` : ""}
+        </div>
+      </div>`;
+  };
+
+  app.innerHTML = `
+    ${mastheadHTML()}
+    ${nextHTML}
+    ${practiceHTML}
+    <div class="sched-group">${SCHEDULE_SEASON} &middot; Upcoming</div>
+    ${upcoming.length ? upcoming.map(row).join("") : `<div class="subject-note">No upcoming dates left this season.</div>`}
+    ${past.length ? `<div class="sched-group">Completed</div>${past.map(row).join("")}` : ""}
+    <div class="subject-note">Westport Academic Team schedule plus KAAC Governor's Cup dates. JCPS = league matches; KAAC = state association events.</div>
+    <footer class="app-footer">Progress is saved on this device.</footer>
+  `;
+  wireNav();
+}
+
+function renderHome() {
+  if (!findSubject(currentSubjectId)) currentSubjectId = SUBJECTS[0].id;
+  const subject = findSubject(currentSubjectId);
+  const stats = overallStats(subject);
+  app.innerHTML = `
+    ${mastheadHTML()}
 
     <div class="subject-tabs" id="subject-tabs"></div>
 
@@ -1686,10 +2201,11 @@ function renderHome() {
     <div class="subject-note">More subject areas will show up here as new study guides get added — just upload the next PDF whenever it's ready.</div>
 
     <footer class="app-footer">
-      Tracking covers this visit only &mdash; reloading starts fresh.
-      <button id="reset-btn" style="margin-left:6px;">Start over now</button>
+      Progress is saved on this device.
+      <button id="reset-btn" style="margin-left:6px;">Reset all progress</button>
     </footer>
   `;
+  wireNav();
   const tabs = document.getElementById("subject-tabs");
   SUBJECTS.forEach(s => {
     const btn = document.createElement("button");
@@ -1715,7 +2231,8 @@ function renderHome() {
     list.appendChild(div);
   });
   document.getElementById("reset-btn").addEventListener("click", () => {
-    progress = defaultProgress();
+    if (!confirm("Reset all saved progress on this device?")) return;
+    clearProgress();
     render();
   });
 }
@@ -1744,6 +2261,7 @@ function renderCategory() {
     </div>
     <div class="mini-stats">
       <div class="mini-stat"><b>${st.knownF}/${st.totalF}</b> cards known</div>
+      <div class="mini-stat"><b>${st.askedQ}/${st.totalQ}</b> questions asked so far</div>
       <div class="mini-stat"><b>${st.correctQ}/${st.totalQ}</b> quiz correct (last try)</div>
     </div>
   `;
@@ -1753,10 +2271,15 @@ function renderCategory() {
 }
 
 /* ---------- Flashcards ---------- */
+function flashcardOrder(cat) {
+  const rank = i => ({ learning: 0, new: 1, known: 2 }[progress.flashcards[cat.flashcards[i].id]] ?? 1);
+  return shuffle(cat.flashcards.map((_, i) => i)).sort((a, b) => rank(a) - rank(b));
+}
+
 function startFlashcards() {
   const cat = findCategory(view.subjId, view.catId);
   session = {
-    order: shuffle(cat.flashcards.map((_, i) => i)),
+    order: flashcardOrder(cat),
     idx: 0,
     flipped: false,
     seen: 0,
@@ -1832,10 +2355,18 @@ function renderFlashcards() {
 }
 
 /* ---------- Quiz ---------- */
+// Builds a round that asks every question in the category, with the ones she has
+// never been asked first, then the least-asked. Order is random within each tier,
+// so even if she quits a round early, the next round picks up what was skipped.
+function quizOrder(cat) {
+  const attemptsOf = i => (progress.quiz[cat.quiz[i].id] || { attempts: 0 }).attempts;
+  return shuffle(cat.quiz.map((_, i) => i)).sort((a, b) => attemptsOf(a) - attemptsOf(b));
+}
+
 function startQuiz() {
   const cat = findCategory(view.subjId, view.catId);
   session = {
-    order: shuffle(cat.quiz.map((_, i) => i)),
+    order: quizOrder(cat),
     idx: 0,
     answered: false,
     selected: null,
@@ -1877,7 +2408,7 @@ function renderQuiz() {
   app.innerHTML = `
     <div class="back-row">
       <button class="back-btn" id="back-cat">&larr; ${cat.name}</button>
-      <div class="session-progress" style="margin:0;">Question ${session.idx+1} of ${total} &middot; Score ${session.correctCount}</div>
+      <div class="session-progress" style="margin:0;">Question ${session.idx+1} of ${total} &middot; Score ${session.correctCount}${(progress.quiz[q.id] && progress.quiz[q.id].attempts) ? "" : ' &middot; <span style="color:var(--blue); font-weight:700;">New</span>'}</div>
     </div>
     <div class="quiz-q">
       <div class="term">${q.q}</div>
